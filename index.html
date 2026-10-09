@@ -159,6 +159,7 @@ h1.sm{font-size:clamp(34px,6vw,80px)!important}
 .rk em{font-style:normal;color:#9fa0ff;font-size:.6em}
 .md{display:inline-flex;width:1.6em;height:1.6em;border-radius:50%;align-items:center;justify-content:center;font-weight:700;color:#241a6b}
 .m1{background:linear-gradient(135deg,#ffe066,#ffb703)}.m2{background:linear-gradient(135deg,#f1f3f5,#aab0c4)}.m3{background:linear-gradient(135deg,#ffb77a,#c97a3a)}.m4{background:#4a4f86;color:#fff}
+#cb{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:5.5em}.cbar{display:block;width:100%;height:5px;background:#ffffff33;border-radius:3px;overflow:hidden}.cbar b{display:block;height:100%;width:100%;background:#ffd60a}
 </style>
 </head>
 <body>
@@ -237,7 +238,7 @@ const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const capT=s=>s.charAt(0).toLocaleUpperCase("tr")+s.slice(1),capE=s=>s.charAt(0).toUpperCase()+s.slice(1);
 const COL=["#ff5d8f","#ffb703","#2ec4b6","#4cc9f0","#b794f6","#80ed99","#ff9248","#f78fd0"];
-const LANES=4,CX=.15,SLOTS=8,TURN=120;
+const LANES=4,CX=.15,SLOTS=8,TURN=120,CB=5000;
 const ls={get(k){try{return+localStorage.getItem(k)||0}catch(e){return 0}},set(k,v){try{localStorage.setItem(k,v)}catch(e){}}};
 let st=null,hi=ls.get("wc_hi"),sound=true,btns=[],grade=0,sel=new Set(),npl=1,names=[],PL=[],pi=0,why="";
 
@@ -294,7 +295,7 @@ function freeWord(){const used=new Set([...st.slots,...st.enemies.map(e=>e.w.en)
 function setSlot(i,en){st.slots[i]=en;st.locks.delete(i);const b=btns[i];b.classList.remove("pop","no","lk");b.textContent=capE(en);void b.offsetWidth;b.classList.add("pop")}
 function lockSlot(i){st.locks.set(i,performance.now()+6000);btns[i].classList.add("lk")}
 function unlockAll(){st.locks.clear();btns.forEach(b=>b.classList.remove("lk"))}
-function hud(){$("#hp").innerHTML=[0,1,2].map(i=>SV.heart(i<st.hp)).join("");$("#sc").textContent=st.score;$("#hi").textContent=Math.max(hi,st.score);$("#lv").textContent=st.level;$("#cb").innerHTML=st.combo>1?`<span class="pill">KOMBO x${Math.min(st.combo,5)}</span>`:"";$("#who").textContent=PL[pi]?PL[pi].n:"";tmr()}
+function hud(){$("#hp").innerHTML=[0,1,2].map(i=>SV.heart(i<st.hp)).join("");$("#sc").textContent=st.score;$("#hi").textContent=Math.max(hi,st.score);$("#lv").textContent=st.level;$("#cb").innerHTML=st.combo>1?`<span class="pill">KOMBO x${Math.min(st.combo,6)}</span><i class="cbar"><b></b></i>`:"";$("#who").textContent=PL[pi]?PL[pi].n:"";tmr()}
 function tmr(){const s=Math.ceil(st.left);$("#tm").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");$("#tbar i").style.width=st.left/TURN*100+"%"}
 function newGame(){PL=Array.from({length:npl},(_,i)=>({n:(names[i]||"").trim()||(npl>1?"Oyuncu "+(i+1):"Oyuncu"),s:0,kills:0,best:0,missed:[]}));pi=0;startTurn()}
 function startTurn(){
@@ -302,7 +303,7 @@ function startTurn(){
  st=blank();st.run=true;st.spawnT=.6;st.last=performance.now();unlockAll();
  for(let i=0;i<SLOTS;i++)setSlot(i,freeWord());
  hud();$("#screen").hidden=true;music.start();requestAnimationFrame(loop)}
-const speed=()=>Math.min(.11,.038+.006*st.level),interval=()=>Math.max(1.8,4-.2*st.level),maxAct=()=>Math.min(5,2+(st.level>>1));
+const speed=()=>Math.min(.13,.05+.007*st.level),interval=()=>Math.max(1.1,2.6-.15*st.level),maxAct=()=>Math.min(6,3+(st.level>>1));
 function spawn(){
  const lanes=[...Array(LANES).keys()].filter(l=>!st.enemies.some(e=>e.lane===l&&e.x>.72));
  if(!lanes.length)return false;
@@ -317,7 +318,7 @@ function loop(t){
  if(!st||!st.run)return;
  const dt=Math.min(.05,(t-st.last)/1000);st.last=t;
  st.left-=dt;if(st.left<=0){st.left=0;tmr();endTurn("Süre doldu!");return}
- tmr();const now=performance.now();st.locks.forEach((u,i)=>{if(now>u){st.locks.delete(i);btns[i].classList.remove("lk")}});
+ tmr();const now=performance.now();if(st.combo>0){const r=1-(now-st.cbAt)/CB;if(r<=0){st.combo=0;hud()}else{const cb=document.querySelector(".cbar b");if(cb)cb.style.width=r*100+"%"}}st.locks.forEach((u,i)=>{if(now>u){st.locks.delete(i);btns[i].classList.remove("lk")}});
  st.spawnT-=dt;
  if(st.spawnT<=0){st.spawnT=(st.enemies.filter(e=>!e.dead).length<maxAct()&&spawn())?interval():.4}
  for(const e of [...st.enemies]){if(e.dead)continue;e.x-=speed()*dt*e.k;e.el.style.left=e.x*100+"%";if(e.x<=CX-.02){reach(e);if(!st.run)return}}
@@ -333,8 +334,8 @@ function answer(i){
  if(!st||!st.run||st.locks.has(i))return;
  const en=st.slots[i],c=st.enemies.filter(e=>!e.dead&&e.w.en===en);
  if(!c.length){st.combo=0;sfx.no();lockSlot(i);hud();return}
- const e=c.sort((a,b)=>a.x-b.x)[0];e.dead=true;st.combo++;st.best=Math.max(st.best,st.combo);
- const gain=10*Math.min(st.combo,5);st.score+=gain;unlockAll();say(en);sfx.ok();fire(e,gain);hud()}
+ const e=c.sort((a,b)=>a.x-b.x)[0];e.dead=true;st.combo++;st.cbAt=performance.now();st.best=Math.max(st.best,st.combo);
+ const gain=10*Math.min(st.combo,6);st.score+=gain;unlockAll();say(en);sfx.ok();fire(e,gain);hud()}
 function fire(e,gain){
  const f=$("#field"),fr=f.getBoundingClientRect(),cr=$("#castle").getBoundingClientRect(),er=e.el.getBoundingClientRect();
  const b=document.createElement("div");b.className="bolt";b.innerHTML=SV.bolt;f.appendChild(b);const h=b.offsetWidth/2;
