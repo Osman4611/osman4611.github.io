@@ -6,11 +6,10 @@
 <title>Word Castle · Mehmet Tarman Ortaokulu</title>
 <meta name="theme-color" content="#0b0833">
 <meta name="description" content="Mehmet Tarman Ortaokulu İngilizce kelime savunma oyunu">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 html,body{margin:0;height:100%;background:#0d0a2a;color:#fff;font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;overflow:hidden;touch-action:manipulation}
-#game{height:100dvh;display:grid;grid-template-rows:auto 1fr auto;padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0)}
+#game{display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0)}
 #hud{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:1.2vh 2vw;background:#1b1650;border-bottom:4px solid #3a2f9e;font-weight:900;font-size:clamp(16px,2.8vw,36px)}
 #hud .g{display:flex;gap:2vw;align-items:center}
 #hud small{display:block;font-size:.45em;color:#9fa0ff;font-weight:700;line-height:1}
@@ -27,7 +26,7 @@ html,body{margin:0;height:100%;background:#0d0a2a;color:#fff;font-family:"Trebuc
 @keyframes fl{from{opacity:.55}to{opacity:0}}
 @keyframes sh{20%{transform:translateY(-50%) translateX(-10px) rotate(-4deg)}60%{transform:translateY(-50%) translateX(10px) rotate(4deg)}}
 .enemy{position:absolute;height:25%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
-.mon{font-size:min(9vh,8vw);line-height:1;animation:bob .7s ease-in-out infinite alternate;filter:drop-shadow(0 5px 0 #0005)}
+.mon{font-size:min(9vh,8vw);line-height:1;animation:bob .7s ease-in-out infinite alternate;will-change:transform}
 .tag{margin-top:.2vh;background:#fff;color:#241a6b;font-weight:900;padding:.1em .6em;border-radius:999px;font-size:clamp(16px,3vw,40px);white-space:nowrap;border:3px solid #ffd60a;box-shadow:0 4px 0 #0005}
 @keyframes bob{to{transform:translateY(-8px) rotate(4deg)}}
 .bolt{position:absolute;left:0;top:0;font-size:min(7vh,6vw);pointer-events:none;z-index:5}
@@ -63,24 +62,25 @@ html,body{margin:0;height:100%;background:#0d0a2a;color:#fff;font-family:"Trebuc
 /* v2 */
 body{font-family:"Fredoka","Trebuchet MS","Segoe UI",system-ui,sans-serif}
 #bg{position:fixed;inset:0;z-index:0;overflow:hidden;background:linear-gradient(160deg,#0b0833,#1a1050 50%,#2a0f45)}
-#bg i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;filter:blur(80px);opacity:.5;animation:drift 14s ease-in-out infinite alternate}
-#bg i:nth-child(1){background:#4285f4;left:-20vmax;top:-25vmax}
-#bg i:nth-child(2){background:#9b72cb;right:-25vmax;top:10vmax;animation-delay:-5s}
-#bg i:nth-child(3){background:#d96570;left:10vmax;bottom:-35vmax;animation-delay:-9s}
+#bg i{position:absolute;width:60vmax;height:60vmax;border-radius:50%;opacity:.45}
+#bg i:nth-child(1){background:radial-gradient(circle,#4285f4,transparent 65%);left:-20vmax;top:-25vmax}
+#bg i:nth-child(2){background:radial-gradient(circle,#9b72cb,transparent 65%);right:-25vmax;top:10vmax}
+#bg i:nth-child(3){background:radial-gradient(circle,#d96570,transparent 65%);left:10vmax;bottom:-35vmax}
 @keyframes drift{to{transform:translate(14vmax,10vmax) scale(1.2)}}
-#game{position:relative;z-index:1}
-#hud,#panel{background:rgba(20,14,70,.7);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#game{position:fixed;inset:0;z-index:1}
+#hud,#panel{background:#16104f}
 #hud{border-bottom:1px solid #ffffff30}#panel{border-top:1px solid #ffffff30}
+.a,.gr{background:var(--c)}
 .a,.gr{background:linear-gradient(180deg,color-mix(in srgb,var(--c) 62%,#fff),var(--c));box-shadow:0 7px 0 color-mix(in srgb,var(--c) 55%,#000),0 12px 22px #0007,inset 0 2px 0 #fff9}
 #field{background:radial-gradient(1.5px 1.5px at 20% 15%,#fffb 50%,transparent),radial-gradient(2px 2px at 45% 8%,#fffc 50%,transparent),radial-gradient(1.5px 1.5px at 70% 30%,#fff9 50%,transparent),radial-gradient(1.5px 1.5px at 88% 12%,#fffb 50%,transparent),repeating-linear-gradient(180deg,#1f6b57 0 25%,#1a5d4c 25% 50%)}
 #field:after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(180deg,transparent 0 calc(25% - 2px),#ffffff22 calc(25% - 2px) 25%),radial-gradient(ellipse at 50% 50%,transparent 55%,#0d0a2a88)}
 #moon{position:absolute;right:3%;top:2%;font-size:min(9vh,8vw);filter:drop-shadow(0 0 22px #ffe9a8);opacity:.9;z-index:0}
 .cl{position:absolute;left:100%;font-size:min(8vh,7vw);opacity:.22;pointer-events:none;animation:cl 60s linear infinite}
 @keyframes cl{to{transform:translateX(-140vw)}}
-#castle{filter:drop-shadow(0 0 20px #ffd60aaa) drop-shadow(0 6px 0 #0006)}
-#screen{background:rgba(7,6,26,.55);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+#castle{filter:none}
+#screen{background:rgba(7,6,26,.92)}
 .box{background:rgba(255,255,255,.07);border:1px solid #ffffff2e;border-radius:34px;padding:3vh 3vw;box-shadow:0 30px 80px #0008}
-.box h1{background-image:linear-gradient(90deg,#4285f4,#9b72cb,#d96570,#ffb703,#4285f4);background-size:300% 100%;animation:shim 6s linear infinite}
+.box h1{background-image:linear-gradient(90deg,#4285f4,#9b72cb,#d96570,#ffb703,#4285f4);}
 @keyframes shim{to{background-position:300% 0}}
 .u{background:rgba(255,255,255,.08);border:2px solid #ffffff2a}
 .u.on{background:linear-gradient(135deg,#4285f4,#9b72cb);border-color:#fff;color:#fff;box-shadow:0 0 24px #9b72cb}
@@ -99,7 +99,7 @@ body{font-family:"Fredoka","Trebuchet MS","Segoe UI",system-ui,sans-serif}
 @keyframes tw{50%{opacity:.95;transform:scale(1.8)}}
 .ic{position:relative;text-align:center;padding:0 4vw}
 .sw{position:relative;display:inline-block;width:min(22vh,34vw)}
-.spark{display:block;width:100%;animation:sp 1.4s cubic-bezier(.2,1.4,.4,1) both,spin 14s linear 1.4s infinite,glow 2.4s ease-in-out 1.4s infinite alternate}
+.spark{display:block;width:100%;animation:sp 1.4s cubic-bezier(.2,1.4,.4,1) both,spin 14s linear 1.4s infinite}
 @keyframes sp{from{transform:scale(0) rotate(-180deg);opacity:0}}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes glow{from{filter:drop-shadow(0 0 14px #4285f4)}to{filter:drop-shadow(0 0 42px #d96570)}}
@@ -109,8 +109,8 @@ body{font-family:"Fredoka","Trebuchet MS","Segoe UI",system-ui,sans-serif}
 .sch{margin-top:3vh;font-size:clamp(16px,3.4vw,46px);font-weight:600;letter-spacing:.12em}
 .wc{margin:.1em 0 0;font-size:clamp(46px,11vw,150px);font-weight:700;line-height:1.05}
 .sch span,.wc span{display:inline-block;background:linear-gradient(90deg,#4285f4,#9b72cb,#d96570,#ffb703,#4285f4);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
-.sch span{animation:rise .8s ease both,shim 3s linear infinite}
-.wc span{animation:pop .9s cubic-bezier(.2,1.5,.4,1) both,shim 3s linear infinite}
+.sch span{animation:rise .8s ease both}
+.wc span{animation:pop .9s cubic-bezier(.2,1.5,.4,1) both}
 @keyframes rise{from{opacity:0;transform:translateY(22px);filter:blur(10px)}}
 @keyframes pop{0%{opacity:0;transform:translateY(60px) scale(.4)}}
 .tl{opacity:0;animation:fade 1s 3.4s forwards;color:#cfd0ff;font-size:clamp(14px,2.2vw,28px);margin-top:1vh}
@@ -165,6 +165,26 @@ h1.sm{font-size:clamp(34px,6vw,80px)!important}
 @media (max-height:820px){.box{padding:1.6vh 2vw}h1.sm{font-size:clamp(28px,4.2vw,56px)!important}.go{font-size:clamp(20px,3vw,40px);margin-top:.8vh}.go.alt{font-size:clamp(18px,2.6vw,32px)}.us{gap:.8vh .8vw}.h3{margin:1vh 0 .4vh}.stats{margin:1vh 0}}
 #toast{max-width:92vw;white-space:normal;text-align:center}
 #cb{display:flex;flex-direction:column;align-items:center;gap:3px;min-width:5.5em}.cbar{display:block;width:100%;height:5px;background:#ffffff33;border-radius:3px;overflow:hidden}.cbar b{display:block;height:100%;width:100%;background:#ffd60a}
+/* v4: ekrana tam sığma */
+#field{container-type:size}
+#tbar i{transition:width 1s linear}
+#hud{flex-wrap:wrap;row-gap:2px;padding:.8vh 2vw}
+.tag{font-size:clamp(11px,min(6.5cqh,3vw),40px);border-width:2px}
+.mon svg{width:min(14cqh,10cqw);height:min(14cqh,10cqw)}
+#castle svg{height:min(78cqh,18cqw)}
+.bolt{width:min(8cqh,7cqw)}
+.a{padding:0 .3em;overflow:hidden;line-height:1.05}
+@media (max-width:700px){
+ #hud{font-size:15px;gap:2px 8px}#hud .g{gap:8px}.ib{font-size:18px}
+ #panel{grid-template-columns:repeat(4,1fr);gap:1vh 1.2vw;padding:1vh 1.4vw}
+ .a{min-height:7.5vh;font-size:clamp(12px,3.4vw,20px);padding:0 3px;border-radius:14px;box-shadow:0 4px 0 #0008}
+}
+@media (max-height:520px){
+ #hud{font-size:clamp(13px,2.2vw,22px)}
+ #panel{grid-template-columns:repeat(4,1fr);gap:.8vh 1vw;padding:.8vh 1.2vw}
+ .a{min-height:0;height:11vh;font-size:clamp(13px,2.6vw,26px);border-radius:14px;box-shadow:0 4px 0 #0008}
+}
+#ta{width:100%;height:36vh;border:2px solid #ffffff33;background:rgba(255,255,255,.1);color:#fff;border-radius:14px;padding:.6em;font:inherit;font-size:clamp(15px,2.4vw,26px);user-select:text;-webkit-user-select:text;resize:none}
 </style>
 </head>
 <body>
@@ -192,6 +212,9 @@ h1.sm{font-size:clamp(34px,6vw,80px)!important}
  </div>
 </div>
 <script>
+/* Google Fonts sayfayı bloklamasın: sonradan yüklenir, yüklenmezse yedek font kullanılır */
+(function(){try{var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap";document.head.appendChild(l)}catch(e){}})();
+
 let W=[];
 const D={
 5:{
@@ -250,7 +273,7 @@ const MEM="wc_mem_v2";
 const mem=(()=>{let m={};try{m=JSON.parse(localStorage.getItem(MEM)||"{}")||{}}catch(e){m={}}
  m.hi=m.hi&&typeof m.hi==="object"?m.hi:{};m.sel=m.sel&&typeof m.sel==="object"?m.sel:{};
  m.names=Array.isArray(m.names)?m.names:[];m.board=Array.isArray(m.board)?m.board:[];
- m.npl=[1,2,3,4].includes(m.npl)?m.npl:1;m.sound=m.sound!==false;m.music=m.music!==false;m.grade=+m.grade||0;
+ m.npl=[1,2,3,4].includes(m.npl)?m.npl:1;m.custom=m.custom&&typeof m.custom==="object"?m.custom:{};m.hide=m.hide&&typeof m.hide==="object"?m.hide:{};m.sound=m.sound!==false;m.music=m.music!==false;m.grade=+m.grade||0;
  if(!m.old){m.old=1;const o=ls.get("wc_hi");if(o)m.hi.g0=o}
  return m})();
 const save=()=>{try{localStorage.setItem(MEM,JSON.stringify(mem))}catch(e){}};
@@ -306,32 +329,32 @@ function icons(){$("#snd").innerHTML=IC.snd(sound);$("#mus").innerHTML=IC.mus(mu
 function say(t){if(!sound||!window.speechSynthesis)return;try{speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(t);u.lang="en-US";u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
 
 /* ---------- oyun ---------- */
-const panel=$("#panel");
+const panel=$("#panel");let FW=0;const meas=()=>{FW=$("#field").clientWidth};addEventListener("resize",meas);
 for(let i=0;i<SLOTS;i++){const b=document.createElement("button");b.className="a";b.style.setProperty("--c",COL[i]);b.addEventListener("pointerdown",e=>{e.preventDefault();answer(i)});panel.appendChild(b);btns.push(b)}
 const blank=()=>({hp:3,score:0,combo:0,level:1,kills:0,best:0,enemies:[],slots:Array(SLOTS).fill(null),run:false,left:TURN,locks:new Map(),missed:[]});
-function freeWord(){const used=new Set([...st.slots,...st.enemies.map(e=>e.w.en)]);const p=W.filter(w=>!used.has(w.en));return p[Math.random()*p.length|0].en}
+function freeWord(){const used=new Set([...st.slots,...st.enemies.map(e=>e.w.en)]);const p=W.filter(w=>!used.has(w.en)),q=p.length?p:W;return q[Math.random()*q.length|0].en}
 function setSlot(i,en){st.slots[i]=en;st.locks.delete(i);const b=btns[i];b.classList.remove("pop","no","lk");b.textContent=capE(en);void b.offsetWidth;b.classList.add("pop")}
 function lockSlot(i){st.locks.set(i,performance.now()+6000);btns[i].classList.add("lk")}
 function unlockAll(){st.locks.clear();btns.forEach(b=>b.classList.remove("lk"))}
 function hud(){$("#hp").innerHTML=[0,1,2].map(i=>SV.heart(i<st.hp)).join("");$("#sc").textContent=st.score;$("#hi").textContent=Math.max(hi,st.score);$("#lv").textContent=st.level;$("#cb").innerHTML=st.combo>1?`<span class="pill">KOMBO x${Math.min(st.combo,6)}</span><i class="cbar"><b></b></i>`:"";$("#who").textContent=PL[pi]?PL[pi].n:"";tmr()}
-function tmr(){const s=Math.ceil(st.left);$("#tm").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");$("#tbar i").style.width=st.left/TURN*100+"%"}
+let _ts=-1;function tmr(){const s=Math.ceil(st.left);if(s===_ts)return;_ts=s;$("#tm").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");$("#tbar i").style.width=st.left/TURN*100+"%"}
 function newGame(){PL=Array.from({length:npl},(_,i)=>({n:(names[i]||"").trim()||(npl>1?"Oyuncu "+(i+1):"Oyuncu"),s:0,kills:0,best:0,missed:[]}));pi=0;startTurn()}
 function startTurn(){
  document.querySelectorAll(".enemy,.bolt,.fl,.bn").forEach(e=>e.remove());
- st=blank();st.run=true;st.spawnT=.6;st.last=performance.now();unlockAll();
+ meas();_ts=-1;st=blank();st.run=true;st.spawnT=.6;st.last=performance.now();unlockAll();
  for(let i=0;i<SLOTS;i++)setSlot(i,freeWord());
  hud();$("#screen").hidden=true;music.start();requestAnimationFrame(loop)}
 const speed=()=>Math.min(.13,.05+.007*st.level),interval=()=>Math.max(1.1,2.6-.15*st.level),maxAct=()=>Math.min(6,3+(st.level>>1));
 function spawn(){
  const lanes=[...Array(LANES).keys()].filter(l=>!st.enemies.some(e=>e.lane===l&&e.x>.72));
  if(!lanes.length)return false;
- const act=new Set(st.enemies.map(e=>e.w.en)),p=W.filter(w=>!act.has(w.en)),w=p[Math.random()*p.length|0];
+ const act=new Set(st.enemies.map(e=>e.w.en)),p=W.filter(w=>!act.has(w.en));if(!p.length)return false;const w=p[Math.random()*p.length|0];
  if(!st.slots.includes(w.en)){const free=st.slots.map((_,i)=>i).filter(i=>!act.has(st.slots[i]));setSlot(free[Math.random()*free.length|0],w.en)}
  const lane=lanes[Math.random()*lanes.length|0],el=document.createElement("div");
- el.className="enemy";el.style.top=lane*25+"%";
+ el.className="enemy";el.style.top=lane*25+"%";el.style.left="0";
  el.innerHTML=`<div class="mon">${MONS[Math.random()*MONS.length|0](MC[Math.random()*MC.length|0])}</div><div class="tag">${esc(capT(w.tr))}</div>`;
  $("#field").appendChild(el);
- const e={w,lane,el,x:1.02,k:.85+Math.random()*.3,dead:false};el.style.left=e.x*100+"%";st.enemies.push(e);return true}
+ const e={w,lane,el,x:1.02,k:.85+Math.random()*.3,dead:false};el.style.transform=`translate3d(${e.x*FW}px,0,0)`;st.enemies.push(e);return true}
 function loop(t){
  if(!st||!st.run)return;
  const dt=Math.min(.05,(t-st.last)/1000);st.last=t;
@@ -339,7 +362,7 @@ function loop(t){
  tmr();const now=performance.now();if(st.combo>0){const r=1-(now-st.cbAt)/CB;if(r<=0){st.combo=0;hud()}else{const cb=document.querySelector(".cbar b");if(cb)cb.style.width=r*100+"%"}}st.locks.forEach((u,i)=>{if(now>u){st.locks.delete(i);btns[i].classList.remove("lk")}});
  st.spawnT-=dt;
  if(st.spawnT<=0){st.spawnT=(st.enemies.filter(e=>!e.dead).length<maxAct()&&spawn())?interval():.4}
- for(const e of [...st.enemies]){if(e.dead)continue;e.x-=speed()*dt*e.k;e.el.style.left=e.x*100+"%";if(e.x<=CX-.02){reach(e);if(!st.run)return}}
+ for(const e of [...st.enemies]){if(e.dead)continue;e.x-=speed()*dt*e.k;e.el.style.transform=`translate3d(${e.x*FW}px,0,0)`;if(e.x<=CX-.02){reach(e);if(!st.run)return}}
  requestAnimationFrame(loop)}
 function drop(e){e.el.remove();st.enemies=st.enemies.filter(x=>x!==e);const i=st.slots.indexOf(e.w.en);if(i>-1)setSlot(i,freeWord())}
 function reach(e){
@@ -405,14 +428,17 @@ function home(){
  show(`<h1>Word Castle</h1><p>Sınıfını seç</p>${mem.grade?`<button class="go alt" id="cont">Kaldığın yer: ${mem.grade}. Sınıf</button>`:""}<div class="grs">${[5,6,7,8].map(g=>`<button class="gr" data-g="${g}" style="--c:${COL[g-4]}">${g}. Sınıf</button>`).join("")}</div><div class="cr">Mehmet Tarman Ortaokulu · İngilizce</div>`);
  document.querySelectorAll(".gr").forEach(b=>b.onclick=()=>units(+b.dataset.g));
  const ct=$("#cont");if(ct)ct.onclick=()=>units(mem.grade)}
+const CK="★ Kendi Listem";
+function cust(g){const L=(mem.custom[g]||"").split("\n").map(x=>x.replace(/,/g," ").trim()).filter(x=>{const a=x.split("=");return a.length===2&&a[0].trim()&&a[1].trim()});if(L.length)D[g][CK]=L.map(x=>x.split("=").map(y=>y.trim()).join("=")).join(",");else delete D[g][CK]}
+function edit(g){show(`<h1 class="sm">${g}. Sınıf Kelimeler</h1><p>Her satıra bir kelime: <b>türkçe=english</b><br>Örnek: elma=apple</p><textarea id="ta" placeholder="elma=apple&#10;kitap=book"></textarea><div class="row"><button class="go alt" id="bk">Geri</button><button class="go" id="sv">Kaydet</button></div>`);$("#ta").value=mem.custom[g]||"";$("#bk").onclick=()=>units(g);$("#sv").onclick=()=>{mem.custom[g]=$("#ta").value;save();cust(g);const n=D[g][CK]?D[g][CK].split(",").length:0;if(n&&n<10){toast("En az 10 kelime gerekli");return}if(n){mem.sel[g]=[CK];save()}units(g)}}
 function pnames(){const el=$("#pn");el.innerHTML=Array.from({length:npl},(_,i)=>`<input maxlength="12" placeholder="${npl>1?"Oyuncu "+(i+1):"Adın"}" value="${esc(names[i]||"")}">`).join("");el.querySelectorAll("input").forEach((x,i)=>x.oninput=()=>{names[i]=x.value;mem.names=names.slice();save()})}
 function units(g){
- grade=g;hi=gHi(g);mem.grade=g;save();const ks=Object.keys(D[g]);sel=new Set((mem.sel[g]||[]).filter(k=>ks.includes(k)));
- show(`<h1 class="sm">${g}. Sınıf</h1><p>Ünite seç (birden fazla seçebilirsin)</p><div class="us">${ks.map((k,i)=>`<button class="u${sel.has(k)?" on":""}" data-i="${i}">${k}</button>`).join("")}</div><div class="h3">Kim oynuyor? <span>(sırayla, her oyuncuya 2 dk)</span></div><div class="sg" id="npl">${[1,2,3,4].map(n=>`<button data-n="${n}" class="${n==npl?"on":""}">${n==1?"Tek":n+" kişi"}</button>`).join("")}</div><div id="pn"></div><div class="row"><button class="go alt" id="back">Geri</button><button class="go alt" id="all">Tümünü Seç</button><button class="go alt" id="bd">Skorlar</button><button class="go" id="start">BAŞLA</button></div>`);
+ grade=g;hi=gHi(g);mem.grade=g;save();cust(g);const ks=Object.keys(D[g]).filter(k=>k===CK||!mem.hide[g]);sel=new Set((mem.sel[g]||[]).filter(k=>ks.includes(k)));
+ show(`<h1 class="sm">${g}. Sınıf</h1><p>Ünite seç (birden fazla seçebilirsin)</p><div class="us">${ks.map((k,i)=>`<button class="u${sel.has(k)?" on":""}" data-i="${i}">${k}</button>`).join("")}</div><div class="h3">Kim oynuyor? <span>(sırayla, her oyuncuya 2 dk)</span></div><div class="sg" id="npl">${[1,2,3,4].map(n=>`<button data-n="${n}" class="${n==npl?"on":""}">${n==1?"Tek":n+" kişi"}</button>`).join("")}</div><div id="pn"></div><div class="row"><button class="go alt" id="back">Geri</button><button class="go alt" id="all">Tümünü Seç</button><button class="go alt" id="bd">Skorlar</button><button class="go alt" id="ed">Kelime Ekle</button><button class="go alt" id="hd">${mem.hide[g]?"Hazır Üniteleri Göster":"Hazır Üniteleri Gizle"}</button><button class="go" id="start">BAŞLA</button></div>`);
  const bs=[...document.querySelectorAll(".u")];
  bs.forEach(b=>b.onclick=()=>{const k=ks[+b.dataset.i];sel.has(k)?sel.delete(k):sel.add(k);b.classList.toggle("on",sel.has(k));mem.sel[g]=[...sel];save()});
  $("#all").onclick=()=>{const all=sel.size<ks.length;sel=new Set(all?ks:[]);bs.forEach(b=>b.classList.toggle("on",all));mem.sel[g]=[...sel];save()};
- $("#bd").onclick=()=>board(g);
+ $("#bd").onclick=()=>board(g);$("#ed").onclick=()=>edit(g);$("#hd").onclick=()=>{mem.hide[g]=!mem.hide[g];save();units(g)};
  $("#npl").onclick=e=>{const b=e.target.closest("button");if(!b)return;npl=+b.dataset.n;mem.npl=npl;save();[...$("#npl").children].forEach(x=>x.classList.toggle("on",x===b));pnames()};
  pnames();$("#back").onclick=home;
  $("#start").onclick=()=>{if(!sel.size){toast("Önce bir ünite seç");return}build();newGame()}}
@@ -427,7 +453,7 @@ function build(){
  sel.forEach(k=>D[grade][k].split(",").forEach(p=>{const[t,e]=p.split("=");if(sE.has(e)||sT.has(t))return;sE.add(e);sT.add(t);W.push({tr:t,en:e})}))}
 (function(){
  const pal=["#4285f4","#9b72cb","#d96570","#ffd60a","#fff"],isp=$("#isp");
- for(let i=0;i<60;i++){const p=document.createElement("span");p.className="p";p.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--s:${1+Math.random()*3}px;--d:${2+Math.random()*3}s;--l:${Math.random()*3}s;background:${pal[i%5]}`;isp.appendChild(p)}
+ for(let i=0;i<28;i++){const p=document.createElement("span");p.className="p";p.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--s:${1+Math.random()*3}px;--d:${2+Math.random()*3}s;--l:${Math.random()*3}s;background:${pal[i%5]}`;isp.appendChild(p)}
  const sp=(el,t,d0,step)=>{el.innerHTML=[...t].map((c,i)=>`<span style="animation-delay:${d0+i*step}s,${-i*.12}s">${c===" "?"&nbsp;":c}</span>`).join("")};
  sp($("#sch"),"MEHMET TARMAN ORTAOKULU",1.1,.05);
  sp($("#wc"),"WORD CASTLE",2.3,.09);
