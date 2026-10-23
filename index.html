@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Word Castle · Mehmet Tarman Ortaokulu</title>
-<meta name="theme-color" content="#0b0833">
+<meta name="theme-color" content="#0b0833"><link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="description" content="Mehmet Tarman Ortaokulu İngilizce kelime savunma oyunu">
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
 html,body{margin:0;height:100%;background:#0d0a2a;color:#fff;font-family:"Trebuchet MS","Segoe UI",system-ui,sans-serif;overflow:hidden;touch-action:manipulation}
 #game{display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding:env(safe-area-inset-top,0) env(safe-area-inset-right,0) env(safe-area-inset-bottom,0) env(safe-area-inset-left,0)}
-#hud{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:1.2vh 2vw;background:#1b1650;border-bottom:4px solid #3a2f9e;font-weight:900;font-size:clamp(16px,2.8vw,36px)}
+#hud{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:1.2vh 2vw;background:#1b1650;border-bottom:4px solid #3a2f9e;font-weight:700;font-size:clamp(16px,2.8vw,36px)}
 #hud .g{display:flex;gap:2vw;align-items:center}
 #hud small{display:block;font-size:.45em;color:#9fa0ff;font-weight:700;line-height:1}
 .ib{border:0;border-radius:14px;background:#3a2f9e;color:#fff;font-size:clamp(18px,3vw,38px);padding:.3em .6em;cursor:pointer}
@@ -27,12 +27,12 @@ html,body{margin:0;height:100%;background:#0d0a2a;color:#fff;font-family:"Trebuc
 @keyframes sh{20%{transform:translateY(-50%) translateX(-10px) rotate(-4deg)}60%{transform:translateY(-50%) translateX(10px) rotate(4deg)}}
 .enemy{position:absolute;height:25%;display:flex;flex-direction:column;align-items:center;justify-content:center;pointer-events:none}
 .mon{font-size:min(9vh,8vw);line-height:1;animation:bob .7s ease-in-out infinite alternate;will-change:transform}
-.tag{margin-top:.2vh;background:#fff;color:#241a6b;font-weight:900;padding:.1em .6em;border-radius:999px;font-size:clamp(16px,3vw,40px);white-space:nowrap;border:3px solid #ffd60a;box-shadow:0 4px 0 #0005}
+.tag{margin-top:.2vh;background:#fff;color:#241a6b;font-weight:700;padding:.1em .6em;border-radius:999px;font-size:clamp(16px,3vw,40px);white-space:nowrap;border:3px solid #ffd60a;box-shadow:0 4px 0 #0005}
 @keyframes bob{to{transform:translateY(-8px) rotate(4deg)}}
 .bolt{position:absolute;left:0;top:0;font-size:min(7vh,6vw);pointer-events:none;z-index:5}
-.fl{position:absolute;font-weight:900;font-size:clamp(20px,3.6vw,50px);color:#ffd60a;text-shadow:0 3px 0 #000a;pointer-events:none;z-index:6}
+.fl{position:absolute;font-weight:700;font-size:clamp(20px,3.6vw,50px);color:#ffd60a;text-shadow:0 3px 0 #000a;pointer-events:none;z-index:6}
 #panel{display:grid;grid-template-columns:repeat(4,1fr);gap:1.4vh 1.4vw;padding:1.4vh 1.6vw;background:#1b1650;border-top:4px solid #3a2f9e}
-.a{border:0;border-radius:22px;min-height:clamp(54px,11vh,130px);font-weight:900;font-size:clamp(20px,3.4vw,50px);line-height:1;font-family:inherit;color:#1a1240;cursor:pointer;box-shadow:0 7px 0 #0008;transition:transform .08s}
+.a{border:0;border-radius:22px;min-height:clamp(54px,11vh,130px);font-weight:700;font-size:clamp(20px,3.4vw,50px);line-height:1;font-family:inherit;color:#1a1240;cursor:pointer;box-shadow:0 7px 0 #0008;transition:transform .08s}
 .a:active{transform:translateY(5px);box-shadow:0 2px 0 #0008}
 .a.pop{animation:pp .3s}.a.no{animation:no .3s;filter:grayscale(.6)}
 @keyframes pp{from{transform:scale(.7)}}
@@ -43,17 +43,17 @@ html,body{margin:0;height:100%;background:#0d0a2a;color:#fff;font-family:"Trebuc
 .box h1{font-size:clamp(44px,9vw,120px);margin:0;line-height:1;background:linear-gradient(90deg,#ffd60a,#ff4d6d,#4cc9f0);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 5px 0 #000a)}
 .box p{font-size:clamp(18px,3vw,36px);color:#cfd0ff;margin:1.6vh 0}
 .stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1.4vh 2vw;margin:2vh 0}
-.stats div{background:#241f6e;border-radius:18px;padding:1vh 1vw;font-size:clamp(16px,2.6vw,32px);font-weight:900}
+.stats div{background:#241f6e;border-radius:18px;padding:1vh 1vw;font-size:clamp(16px,2.6vw,32px);font-weight:700}
 .stats small{display:block;font-size:.6em;color:#9fa0ff}
 .miss{font-size:clamp(14px,2.2vw,26px);color:#ffd6dc;margin:1vh 0}
-.go{border:0;border-radius:26px;background:#ffd60a;color:#241a6b;font-weight:900;font-size:clamp(24px,4.4vw,56px);font-family:inherit;padding:.4em 1.4em;cursor:pointer;box-shadow:0 8px 0 #b38f00;margin-top:1.4vh}
+.go{border:0;border-radius:26px;background:#ffd60a;color:#241a6b;font-weight:700;font-size:clamp(24px,4.4vw,56px);font-family:inherit;padding:.4em 1.4em;cursor:pointer;box-shadow:0 8px 0 #b38f00;margin-top:1.4vh}
 .go:active{transform:translateY(6px);box-shadow:0 2px 0 #b38f00}
 .box{max-width:900px}
 .grs{display:grid;grid-template-columns:repeat(2,1fr);gap:2vh 2vw;margin-top:2vh}
-.gr{border:0;border-radius:26px;color:#1a1240;font-weight:900;font-size:clamp(26px,5vw,64px);font-family:inherit;padding:.7em .3em;cursor:pointer;box-shadow:0 8px 0 #0008}
+.gr{border:0;border-radius:26px;color:#1a1240;font-weight:700;font-size:clamp(26px,5vw,64px);font-family:inherit;padding:.7em .3em;cursor:pointer;box-shadow:0 8px 0 #0008}
 .gr:active{transform:translateY(6px);box-shadow:0 2px 0 #0008}
 .us{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2vh 1.2vw;text-align:left}
-.u{border:3px solid #3a2f9e;background:#241f6e;color:#fff;border-radius:16px;padding:.6em .8em;font-weight:800;font-size:clamp(16px,2.6vw,30px);font-family:inherit;cursor:pointer}
+.u{border:3px solid #3a2f9e;background:#241f6e;color:#fff;border-radius:16px;padding:.6em .8em;font-weight:700;font-size:clamp(16px,2.6vw,30px);font-family:inherit;cursor:pointer}
 .u.on{background:#ffd60a;color:#241a6b;border-color:#ffd60a}
 .row{display:flex;gap:1.5vw;justify-content:center;flex-wrap:wrap}
 .go.alt{background:#4cc9f0;box-shadow:0 8px 0 #1f7a96;font-size:clamp(18px,3vw,36px)}
@@ -106,7 +106,7 @@ body{font-family:"Fredoka","Trebuchet MS","Segoe UI",system-ui,sans-serif}
 .ring{position:absolute;inset:0;border-radius:50%;border:2px solid #9b72cb;box-shadow:0 0 40px #4285f4;opacity:0;animation:rg 1.8s ease-out .7s 2}
 @keyframes rg{from{opacity:.9;transform:scale(.3)}to{opacity:0;transform:scale(4)}}
 .sch,.wc{display:block}
-.sch{margin-top:3vh;font-size:clamp(16px,3.4vw,46px);font-weight:600;letter-spacing:.12em}
+.sch{margin-top:3vh;font-size:clamp(16px,3.4vw,46px);font-weight:600;letter-spacing:.06em}
 .wc{margin:.1em 0 0;font-size:clamp(46px,11vw,150px);font-weight:700;line-height:1.05}
 .sch span,.wc span{display:inline-block;background:linear-gradient(90deg,#4285f4,#9b72cb,#d96570,#ffb703,#4285f4);background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent}
 .sch span{animation:rise .8s ease both}
@@ -185,6 +185,8 @@ h1.sm{font-size:clamp(34px,6vw,80px)!important}
  .a{min-height:0;height:11vh;font-size:clamp(13px,2.6vw,26px);border-radius:14px;box-shadow:0 4px 0 #0008}
 }
 #ta{width:100%;height:36vh;border:2px solid #ffffff33;background:rgba(255,255,255,.1);color:#fff;border-radius:14px;padding:.6em;font:inherit;font-size:clamp(15px,2.4vw,26px);user-select:text;-webkit-user-select:text;resize:none}
+.bigname{font-size:clamp(48px,15vw,220px);font-weight:700;line-height:1.1;padding:.1em 0;word-break:break-word;background:linear-gradient(90deg,#ffd60a,#ff4d6d,#4cc9f0);-webkit-background-clip:text;background-clip:text;color:transparent}
+.go,#enter{font-family:"Segoe UI",Roboto,Arial,sans-serif;font-weight:700;letter-spacing:.03em}
 </style>
 </head>
 <body>
@@ -212,55 +214,50 @@ h1.sm{font-size:clamp(34px,6vw,80px)!important}
  </div>
 </div>
 <script>
-/* Google Fonts sayfayı bloklamasın: sonradan yüklenir, yüklenmezse yedek font kullanılır */
 (function(){try{var l=document.createElement("link");l.rel="stylesheet";l.href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap";document.head.appendChild(l)}catch(e){}})();
 
 let W=[];
 const D={
 5:{
-"1. Hello!":"merhaba=hello,hoşça kal=goodbye,isim=name,soyisim=surname,yaş=age,ülke=country,uyruk=nationality,arkadaş=friend,sınıf arkadaşı=classmate,telefon numarası=phone number,tanışmak=meet,teşekkür ederim=thank you",
-"2. My Town":"kasaba=town,süpermarket=supermarket,hastane=hospital,eczane=pharmacy,fırın=bakery,kütüphane=library,park=park,sinema=cinema,postane=post office,sokak=street,köprü=bridge,sağa dön=turn right,sola dön=turn left",
-"3. Games and Hobbies":"oyun=game,hobi=hobby,satranç=chess,resim yapmak=paint,yüzmek=swim,bisiklete binmek=ride a bike,yemek pişirmek=cook,dans etmek=dance,gitar çalmak=play the guitar,fotoğraf çekmek=take photos,koleksiyon=collection,bilgisayar oyunu=video game",
-"4. My Daily Routine":"uyanmak=wake up,kahvaltı yapmak=have breakfast,dişlerini fırçalamak=brush teeth,okula gitmek=go to school,ders çalışmak=study,ödev yapmak=do homework,eve gelmek=come home,akşam yemeği=dinner,duş almak=take a shower,yatmak=go to bed,her zaman=always,asla=never,bazen=sometimes",
-"5. Health":"sağlıklı=healthy,hasta=ill,baş ağrısı=headache,mide ağrısı=stomachache,diş ağrısı=toothache,ateş=fever,öksürük=cough,nezle=cold,doktor=doctor,ilaç=medicine,dinlenmek=rest,sebze=vegetable,meyve=fruit,spor yapmak=exercise",
-"6. Movies":"film=movie,komedi=comedy,korku filmi=horror movie,macera=adventure,bilim kurgu=science fiction,çizgi film=cartoon,aksiyon=action,oyuncu=actor,yönetmen=director,bilet=ticket,perde=screen,seyretmek=watch,komik=funny,korkutucu=scary,sıkıcı=boring",
-"7. Party Time":"parti=party,doğum günü=birthday,pasta=cake,balon=balloon,hediye=gift,davetiye=invitation,müzik=music,misafir=guest,şeker=candy,içecek=drink,kutlamak=celebrate,mum=candle,eğlenmek=have fun",
-"8. Fitness":"spor salonu=gym,koşmak=run,zıplamak=jump,yürümek=walk,futbol=football,basketbol=basketball,voleybol=volleyball,tenis=tennis,takım=team,antrenör=coach,güçlü=strong,hızlı=fast,yavaş=slow,ağırlık kaldırmak=lift weights",
-"9. The Animal Shelter":"barınak=shelter,kedi=cat,köpek=dog,kuş=bird,tavşan=rabbit,balık=fish,kaplumbağa=turtle,at=horse,beslemek=feed,evcil hayvan=pet,tüy=fur,kuyruk=tail,kanat=wing,bakmak=take care of",
-"10. Festivals":"festival=festival,bayram=holiday,kutlama=celebration,gelenek=tradition,kostüm=costume,geçit töreni=parade,havai fişek=fireworks,karnaval=carnival,ulusal=national,ziyaret etmek=visit,kültür=culture,hatıra=souvenir"},
+"1. School Life":"idari birim=administration department,antik=ancient,düzenlemek=arrange,sanat kulübü=art club,sanat sergisi=art exhibition,müdür yardımcısı=assistant to the headmaster,Avustralya=Australia,Azerbaycan=Azerbaijan,bale kulübü=ballet club,Brezilya=Brazil,Kanada=Canada,kantin=canteen,satranç kulübü=chess club,sakız çiğnemek=chew gum,antrenör=coach,konferans salonu=conference hall,ülke=country,drama kulübü=drama club,İngiltere=England,çevre kulübü=environment club,kavga etmek=fight,film kulübü=film club,halk dansları kulübü=folk dance club,çeşme=fountain,Fransa=France,kapı=gate,Almanya=Germany,Yunanistan=Greece,müdür=headmaster,topuklu ayakkabı=high heels,tarihi=historical,İtalya=Italy,Japonya=Japan,Kazakistan=Kazakhstan,Kırgızistan=Kyrgyzstan,yasa=law,kütüphane=library,matematik kulübü=maths club,Meksika=Mexico,müzik kulübü=music club,milli gün=national day,duyuru panosu=noticeboard,uymak=obey,organize etmek=organise,sahip olmak=own,korumak=protect,saygı duymak=respect,kural=rule,Rusya=Russia,güvenli=safe,okul kulübü=school club,bilim kulübü=science club,fen laboratuvarı=science lab,İskoçya=Scotland,sekreter=secretary,bağırmak=shout,çözmek=solve,Güney Kore=South Korea,İspanya=Spain,tür=species,spor kulübü=sports club,spor sahası=sports field,teknoloji kulübü=technology club,Tayland=Thailand,Birleşik Krallık=the United Kingdom,Türkiye=Türkiye,üniforma=uniform,ifade=utterance,Özbekistan=Uzbekistan",
+"2. Classroom Life":"sanat=art,kitaplık=bookcase,raf=bookshelf,tahta kalemi=board marker,ödünç almak=borrow,getirmek=bring,dikkatli=careful,dikkatlice=carefully,pastel boya=crayon,sıra=desk,sözlük=dictionary,drama=drama,seçmeli ders=elective lesson,İngilizce=English,bitirmek=finish,takip etmek=follow,unutmak=forget,Yabancı Dil=Foreign Language,Cuma=Friday,yapıştırıcı=glue,atlı cirit=horseback javelin,ata binme=horseback riding,Bilişim Teknolojisi=Information Technology,ödünç vermek=lend,yüksek sesle=loudly,Pazartesi=Monday,Müzik=Music,defter=notebook,kalem kutusu=pencil case,Beden Eğitimi=Physical Education,sessizce=quietly,el kaldırmak=raise a hand,Din Kültürü ve Ahlak Bilgisi=Religion and Morals,silgi=rubber,çöp kutusu=rubbish bin,cetvel=ruler,Cumartesi=Saturday,okul çantası=school bag,fen bilimleri=Science,makas=scissors,oturacak yer=seat,kağıt=sheet,yavaşça=slowly,akıllı tahta=smart board,Sosyal Bilgiler=Social Studies,Pazar=Sunday,takım çalışması=teamwork,Perşembe=Thursday,düzenli=tidy,ders programı=timetable,Salı=Tuesday,Türkçe=Turkish,Çarşamba=Wednesday,hafta içi=weekday,güreş=wrestling",
+"3. Personal Life":"aksesuarlar=accessories,kol=arm,sonbahar=autumn,sırt çantası=backpack,kemer=belt,papyon=bow,parlak=bright,günlük kıyafetler=casual clothes,palto=coat,rahat=comfortable,kostüm=costume,pamuk=cotton,kıvırcık=curly,koyu=dark,elbise=dress,küpe=earring,göz=eye,kumaş=fabric,peri=fairy,modaya uygun=fashionable,ayak=foot,eldiven=gloves,el=hand,el çantası=handbag,şapka=hat,baş=head,boy=height,ceket=jacket,kot pantolon=jeans,kazak=jumper,bacak=leg,açık=light,bol=loose,orta boy=medium height,boyun=neck,burun=nose,kıyafet=outfit,yağmurluk=raincoat,yağmurlu=rainy,geri dönüştürülmüş=recycled,yüzük=ring,atkı=scarf,gömlek=shirt,ayakkabı=shoes,şort=shorts,ipek=silk,gümüş=silver,etek=skirt,çorap=socks,ilkbahar=spring,düz=straight,şık=stylish,yaz=summer,güneş gözlüğü=sunglasses,uzun=tall,kalın=thick,ince=thin,modaya uygun=trendy,pantolon=trousers,denemek=try on,tişört=T-shirt,şemsiye=umbrella,kol saati=watch,dalgalı=wavy,kış=winter,yün=wool",
+"4. Family Life":"sanat müzesi=art museum,mangal=barbecue,plaj=beach,kutu oyunu=board game,kahvaltı=breakfast,kamp yapma=camping,tırmanmak=climb,bilgisayar=computer,bisiklet sürme=cycling,günlük=diary,balık tutma=fishing,çiçek=flower,orman=forest,bahçe=garden,iyi geçinmek=get on well,fırçalamak=brush,piknik yapmak=have a picnic,hobi=hobby,iş=job,gazete=newspaper,evcil hayvan bakımı=pet care,dinlenme=resting,yüzme=swimming,fotoğraf çekmek=take a photo,çadır=tent,toparlamak=tidy up,alışılmadık=unusual,ziyaret etmek=visit,hafta sonu=weekend",
+"5. Life in the Neighbourhood and City":"antik=ancient,koltuk=armchair,sanat galerisi=art gallery,balkon=balcony,banyo=bathroom,yatak odası=bedroom,alt=bottom,karavan=caravan,kale=castle,sandalye=chair,sinema=cinema,kıyı=coast,köşe=corner,kalabalık=crowded,dolap=cupboard,yemek odası=dining room,bulaşık makinesi=dishwasher,çift katlı otobüs=double-decker bus,pahalı=expensive,deneyimlemek=experience,apartman dairesi=flat,çatal=fork,buzdolabı=fridge,mobilya=furniture,garaj=garage,bahçe=garden,spor salonu=gym,kiralamak=hire,bilgi=information,içeride=inside,mutfak=kitchen,bıçak=knife,lamba=lamp,asansör=lift,konum=location,mahalle=neighbourhood,dışarıda=outside,huzurlu=peaceful,yastık=pillow,tabak=plate,oyun alanı=playground,çatı=roof,dükkan=shop,oturma odası=sitting room,gökdelen=skyscraper,kanepe=sofa,kaşık=spoon,spor merkezi=sports centre,meydan=square,çelik=steel,sokak panayırı=street fair,masa=table,teras=terrace,tuvalet=toilet,kule=tower,geniş=wide,ahşap=wooden,gardırop=wardrobe",
+"6. Life in the World":"miktar=amount,kabartma tozu=baking powder,fasulye=bean,sığır eti=beef,kurabiye=biscuit,kaynatmak=boil,masa ayırtmak=book a table,kase=bowl,tereyağı=butter,şef=chef,tarçın=cinnamon,yemek pişirmek=cook,mısır=corn,kruvasan=croissant,mutfak=cuisine,müşteri=customer,süt ürünleri=dairy,lezzetli=delicious,tatlı=dessert,içecek=drink,yemek=dish,hamur=dough,kuru=dry,boş=empty,un=flour,meyve suyu=fruit juice,ızgara=grilled,sağlıklı=healthy,ısıtmak=heat,ev yapımı=home-made,malzeme=ingredient,reçel=jam,marul=lettuce,hafif=light,kilo vermek=lose weight,ana yemek=main dish,patates püresi=mashed potato,et=meat,mantar=mushroom,fındık=nut,yağ=oil,sipariş vermek=order,krep=pancake,makarna=pasta,nakit ödemek=pay in cash,biber=pepper,turta=pie,kilo almak=put on weight,tarif=recipe,tavsiye etmek=recommend,rezervasyon=reservation,salata=salad,sos=sauce,yavaşça=slowly,koklamak=smell,maden suyu=soda water,baharat=spice,başlangıç=starter,karıştırmak=stir,tatlı=sweet,yemek kaşığı=tablespoon,tatmak=taste,lezzetli=tasty,çay kaşığı=teaspoon,ton balığı=tuna,garson=waiter",
+"7. Life in Nature":"saldırmak=attack,ayı=bear,arı=bee,kuş=bird,çita=cheetah,iletişim kurmak=communicate,timsah=crocodile,merak=curiosity,tehlikeli=dangerous,kartal=eagle,fil=elephant,iri=enormous,çiftlik=farm,tüy=feather,tarla=field,yüzgeç=flipper,tüylü=furry,zürafa=giraffe,goril=gorilla,çim=grass,yaşam alanı=habitat,kocaman=huge,böcek=insect,etkileşim kurmak=interact,vahşi orman=jungle,leopar=leopard,aslan=lion,memeli=mammal,maymun=monkey,dağ=mountain,papağan=parrot,pati=paw,penguen=penguin,sürüngen=reptile,nehir=river,martı=seagull,savan=savanna,korkutucu=scary,fok=seal,gökyüzü=sky,yılan=snake,güçlü=strong,kuyruk=tail,kaplan=tiger,diş=tusk,güçsüz=weak,balina=whale,vahşi=wild,kanat=wing,kurt=wolf,deveye binmek=riding a camel,kaya=rock,kumdan kale=sandcastle,kum tepesi=sand dune,tüplü dalış=scuba diving,deniz kabuğu=seashell,mevsim=season,deniz kenarı=seaside,gezi turu=sightseeing tour,şnorkelle dalış=snorkelling,sıcaklık=temperature,turizm=tourism,kule=tower,gezi=trip,vadi=valley,manzara=view,hayvanat bahçesi=zoo",
+"8. Life in the Universe and Future":"lunapark=amusement park,plaj=beach,kanyon=canyon,iklim=climate,kıta=continent,mercan resifi=coral reef,geyik=deer,çöl=desert,varış yeri=destination,keşfetmek=explore,ünlü=famous,devasa=giant,yarıyıl=half-term,tepe=hill,tarihi=historical,tatil=holiday,davet etmek=invite,dahil etmek=involve,ada=island,eğlence=jolly,göl=lake,büyüleyici=magical,dilek tutmak=make a wish,milli park=national park,ihtiyaç duymak=need,okyanus=ocean,fırsat=opportunity,huzurlu=peaceful,dinlenmek=relax"},
 6:{
-"1. Life":"yaşam=life,yaşlı=old,genç=young,mahalle=neighborhood,komşu=neighbor,şehir=city,köy=village,doğmak=be born,büyümek=grow up,aile=family,dede=grandfather,nine=grandmother,akraba=relative",
-"2. Yummy Breakfast":"kahvaltı=breakfast,peynir=cheese,zeytin=olive,yumurta=egg,reçel=jam,bal=honey,simit=bagel,çay=tea,süt=milk,domates=tomato,salatalık=cucumber,tereyağı=butter,ekmek=bread,portakal suyu=orange juice",
-"3. Downtown":"şehir merkezi=downtown,otobüs durağı=bus stop,banka=bank,müze=museum,alışveriş merkezi=shopping mall,itfaiye=fire station,polis karakolu=police station,trafik ışığı=traffic light,kavşak=crossroads,karşısında=opposite,yanında=next to,arkasında=behind,önünde=in front of,arasında=between",
-"4. Weather and Emotions":"hava durumu=weather,güneşli=sunny,yağmurlu=rainy,karlı=snowy,rüzgârlı=windy,bulutlu=cloudy,fırtınalı=stormy,mutlu=happy,üzgün=sad,kızgın=angry,korkmuş=scared,heyecanlı=excited,yorgun=tired,endişeli=worried",
-"5. At the Fair":"lunapark=fair,dönme dolap=Ferris wheel,hız treni=roller coaster,atlıkarınca=carousel,pamuk şeker=cotton candy,patlamış mısır=popcorn,gösteri=show,palyaço=clown,sihirbaz=magician,sıra=queue,oyuncak=toy,ödül=prize",
-"6. Occupations":"meslek=job,mühendis=engineer,hemşire=nurse,avukat=lawyer,pilot=pilot,aşçı=chef,çiftçi=farmer,itfaiyeci=firefighter,polis memuru=police officer,gazeteci=journalist,berber=barber,şoför=driver,mimar=architect",
-"7. Holidays":"tatil=vacation,sahil=beach,otel=hotel,çadır=tent,kamp yapmak=camp,valiz=suitcase,pasaport=passport,uçak=plane,gemi=ship,tren=train,rehber=guide,harita=map,gezi=trip,güneş kremi=sunscreen",
-"8. Bookworms":"kitap kurdu=bookworm,roman=novel,hikâye=story,yazar=author,şiir=poem,karakter=character,kapak=cover,sayfa=page,bölüm=chapter,gizem=mystery,masal=fairy tale,dergi=magazine,gazete=newspaper",
-"9. Saving the Planet":"gezegen=planet,geri dönüşüm=recycling,çöp=garbage,kirlilik=pollution,enerji=energy,tasarruf etmek=save,plastik=plastic,cam=glass,kâğıt=paper,doğa=nature,orman=forest,temiz=clean,kirli=dirty,korumak=protect",
-"10. Democracy":"demokrasi=democracy,oy=vote,seçim=election,hak=right,özgürlük=freedom,eşitlik=equality,kural=rule,saygı=respect,sorumluluk=responsibility,başkan=president,lider=leader,adalet=justice,vatandaş=citizen,karar vermek=decide"},
+"1. School Life":"toplantı=assembly,önce=before,umursamak=care,dikkatlice=carefully,kutlamak=celebrate,kutlama=celebration,tören=ceremony,neşeyle=cheerfully,girmek=enter,başarısız olmak=fail,festival=festival,bayrak=flag,takip etmek=follow,sonraki=follow-up,selamlamak=greet,rehber=guide,yardımsever=helpful,talimat=instruction,mülakat=interview,hevesli=keen,sonra=later,liderlik etmek=lead,lider=leader,dinleyici=listener,tavır=manner,İstiklal Marşı=national anthem,paketlemek=pack,geçit töreni=parade,başarmak=pass,izin=permission,düzenli olarak=regularly,okul töreni=school ceremony,yakında=soon,konuşma=speech,başarılı=successful,desteklemek=support,dönem=term,denemek=try,gönüllü olmak=volunteer,isteyerek=willingly",
+"2. Classroom Life":"etkinlik=activity,sonra=after,önce=before,fırçalamak=brush,devam etmek=continue,saymak=count,yaratıcı=creative,günlük=diary,kolay bir şekilde=easily,etkili=effective,egzersiz=exercise,ilk olarak=firstly,odaklanmak=focus,grup=group,alışkanlık=habit,sırayla=in turns,öğrenme=learning,seviye=level,işaretlemek=mark,yöntem=method,genellikle=normally,art arda=one after another,çift=pair,akran=peer,pratik yapmak=practise,sesli okumak=read aloud,sessiz okumak=read silently,geri dönüştürmek=recycle,düzenli=regular,hatırlamak=remember,tekrarlamak=repeat,araştırma=research,dinlenmek=rest,gözden geçirmek=review,tekrar etmek=revise,aramak=search,paylaşmak=share,tür=sort,görev=task,öğretme=teaching,birbirine=to each other,birlikte=together,grup halinde çalışmak=work in groups,ikili çalışmak=work in pairs",
+"3. Personal Life":"ayak bileği=ankle,çekici=attractive,sırt=back,bileklik=bracelet,harika=brilliant,şefkatli=caring,zincir=chain,zeki=clever,çılgın=crazy,odaklanmış=focused,mutlu bir şekilde=happily,kalp=heart,yardımsever=helpful,görüntü=image,bağımsız=independent,mücevher=jewellery,takım=kit,diz=knee,tembel=lazy,bacak=leg,bakış=look,hoş=lovely,kolye=necklace,düzenli=organised,sabırlı=patient,fiziksel=physical,cep=pocket,kibar=polite,para çantası=purse,kaba=rude,ne yazık ki=sadly,görünmek=seem,ciddi=serious,basit=simple,basitçe=simply,cilt=skin,sosyal=social,mide=stomach,mayo=swimsuit,düzenli=tidy,tayt=tights,spor ayakkabısı=trainers,cüzdan=wallet,zayıf=weak",
+"4. Family Life":"adres=address,hırslı=ambitious,apartman dairesi=apartment,asistan=assistant,yazar=author,çöp kutusu=bin,battaniye=blanket,kitaplık=bookshelf,patron=boss,kutu=box,iş adamı=businessman,halı=carpet,kesme tahtası=chopping board,saat=clock,şirket=company,inşaat=construction,aşçı=cook,ocak=cooker,perde=curtain,diş doktoru=dentist,tasarımcı=designer,dedektif=detective,müdür=director,iki katı kadar=double,alt katta=downstairs,çekmece=drawer,kazanmak=earn,işe almak=employ,çalışan=employee,işveren=employer,mühendis=engineer,giriş=entrance,fabrika=factory,çiftçilik yapmak=farm,düz=flat,zemin=floor,mobilya=furniture,ısıtma=heating,gazeteci=journalist,anahtar=key,avukat=lawyer,ışık=light,yönetici=manager,ayna=mirror,memur=officer,boyacı=painter,yastık=pillow,pilot=pilot,profesör=professor,buzdolabı=refrigerator,rapor etmek=report,muhabir=reporter,geri kalan=rest,​restoran=restaurant,çatı=roof,çöp=rubbish,raf=shelf,lavabo=sink,asker=soldier,katı=strict,havlu=towel,üst katta=upstairs,genç odası takımı=youth room set",
+"5. Life in the Neighbourhood and City":"boyunca=along,hiç=any,seyirci=audience,en iyi=best,daha iyi=better,yakalamak=catch,kutlamak=celebrate,birini dahil etmek=count someone in,yaratıcı=creative,karşıya geçmek=cross,kalabalık=crowded,yön=direction,araba yolculuğu=drive,araç kullanma=driving,festival=festival,gaz=gas,beklemek=hang on,caz müzik=jazz,bağlantı=link,yerel=local,kamyon=lorry,ulaşım araçları=means of transport,motosiklet=motorcycle,müzisyen=musician,organize etmek=organise,üst geçit=overpass,park yeri=parking,yanından geçmek=past,performans sergilemek=perform,benzin=petrol,platform=platform,memnun=pleased,pop müzik=pop,pratik yapmak=practise,toplu taşıma=public transport,demiryolu=railway line,para toplamak=raise,rap müzik=rap,kısa yolculuk=ride,rock müzik=rock,acele etmek=rush,gemi=ship,tabela=sign,paten yapmak=skate,yavaşça=slowly,sosyal=social,durum=state,dümdüz=straight,yorgun=tired,tramvay=tram,metro=tube,metro=underground,alt geçit=underpass,kamyonet=van,araç=vehicle,düğün=wedding,tekerlek=wheel",
+"6. Life in the World and Culture":"herhangi bir yer=anywhere,aperatif=appetiser,Avusturya=Austria,Avusturyalı=Austrian,Belçikalı=Belgian,Belçika=Belgium,acı=bitter,başkent=capital,yarışma=competition,ülke=country,çıtır=crispy,kıtır=crunchy,mutfak kültürü=cuisine,​Danimarkalı=Danish,Danimarka=Denmark,tatlı=dessert,yemek=dish,kurutmak=dry,mantı=dumpling,Hollandalı=Dutch,İngiltere=England,İngiliz=English,her yerde=everywhere,deneyim=experience,bayrak=flag,lezzetli=flavourful,yiyecek standı=food stall,yabancı=foreign,Fransa=France,Fransız=French,Alman=German,Almanya=Germany,muhteşem=gorgeous,hükümet=government,Yunanistan=Greece,Yunan=Greek,​ısıtmak=heat,miras=heritage,yüksek kaliteli=high-quality,tarihi öneme sahip=historic,ev yapımı=homemade,inanılmaz=incredible,Hindistan=India,Hintli=Indian/Hindi,malzeme=ingredient,İtalyan=Italian,İtalya=Italy,ana yemek=main course,ulus=nation,ulusal=national,hiçbir yer=nowhere,resmi=official,Polonya=Poland,Polonyalı=Polish,geçici pazar=pop-up market,​bir yer=somewhere,ekşi=sour,İspanya=Spain,​İspanyol=Spanish,baharatlı=spicy,​sokak yemeği=street food,İsveç=Sweden,İsveçli=Swedish,Hollanda=The Netherlands,gelenek=tradition,geleneksel=traditional,Türk=Turkish,Kıbrıs Türkü=Turkish Cypriot,değer=worth",
+"7. Life in Nature and Global Problems":"macera=adventure,-e karşı=against,kamp yapmak=camp,tırmanış=climbing,bisiklete binmek=cycle,tehlike=danger,yok etmek=destroy,etki=effect,enerji=energy,balık tutmak=fish,sıcaklık=heat,yüksekte=high,doğa yürüyüşü=hiking,artırmak=increase,en az=least,daha az=less,az=little,çoğunlukla=mostly,gereklilik=necessity,zorunluluk=obligation,seçmek=pick,ekmek=plant,plastik=plastic,kirlilik=pollution,önlemek=prevent,korumak=protect,rafting=rafting,fark etmek=realize,geri dönüştürmek=recycle,azaltmak=reduce,çıkarmak=remove,değiştirmek=replace,sorumluluk=responsibility,yeniden kullanılabilir=reusable,binmek=ride,çöp=rubbish,koşmak=run,yelken açmak=sail,yelken sporu=sailing,kurtarmak=save,kayak yapmak=ski,duman=smoke,snowboard sporu=snowboarding,çözmek=solve",
+"8. Life in the Universe and Future":"canlı=alive,atmosfer=atmosphere,oluşmak=be composed of,tipi=blizzard,parlak=bright,yakın=close,gelişim=development,mesafe=distance,kuraklık=drought,var olmak=exist,beklemek=expect,deneyim=experience,uzman=expert,son derece=extremely,kanıt=evidence,fabrika=factory,uzak=far,sel=flood,uçan=flying,sonraki=following,dondurucu=freezing,hedef=goal,ümit etmek=hope,kasırga=hurricane,niyet=intention,icat etmek=invent,Jüpiter=Jupiter,bilgi=knowledge,kara=land,büyük=large,ışık=light,şimşek=lightning,Mars=Mars,Merkür=Mercury,Ay=Moon,doğa=nature,Neptün=Neptune,yörünge=orbit,barış=peace,nüfus=population,olasılık=possibility,tahmin etmek=predict,amaç=purpose,tükenmek=run out,Satürn=Saturn,kaynak=source,fırtına=storm,fırtınalı=stormy,Güneş=Sun,sanmak=suppose,teknoloji=technology,gök gürültüsü=thunder,gök gürültülü fırtına=thunderstorm,hortum=tornado,Uranüs=Uranus,Venüs=Venus,görünür=visible"},
 7:{
-"1. Appearance and Personality":"görünüş=appearance,kişilik=personality,uzun boylu=tall,kısa boylu=short,kilolu=overweight,zayıf=thin,yakışıklı=handsome,güzel=beautiful,cömert=generous,cesur=brave,tembel=lazy,çalışkan=hardworking,utangaç=shy,sevecen=kind",
-"2. Sports":"spor=sport,jimnastik=gymnastics,boks=boxing,güreş=wrestling,okçuluk=archery,buz pateni=ice skating,kayak=skiing,şampiyon=champion,maç=match,antrenman=training,madalya=medal,hakem=referee,stadyum=stadium,rakip=opponent,kazanmak=win,kaybetmek=lose",
-"3. Biographies":"biyografi=biography,doğum tarihi=date of birth,ölmek=die,bilim insanı=scientist,mucit=inventor,ressam=painter,besteci=composer,keşfetmek=discover,icat etmek=invent,ünlü=famous,ödül=award,başarı=achievement,çocukluk=childhood,mezun olmak=graduate",
-"4. Wild Animals":"yabani hayvan=wild animal,aslan=lion,kaplan=tiger,fil=elephant,zürafa=giraffe,zebra=zebra,maymun=monkey,kurt=wolf,ayı=bear,timsah=crocodile,yılan=snake,kartal=eagle,yaşam alanı=habitat,nesli tükenmekte=endangered,avlamak=hunt",
-"5. Television":"televizyon=television,kumanda=remote control,kanal=channel,haberler=news,belgesel=documentary,yarışma=quiz show,dizi=series,program=program,reklam=advertisement,izleyici=viewer,sunucu=presenter,canlı yayın=live broadcast,dizi bölümü=episode",
-"6. Celebrations":"tören=ceremony,düğün=wedding,mezuniyet=graduation,yıldönümü=anniversary,yılbaşı=New Year,tebrikler=congratulations,dilek=wish,davet etmek=invite,süslemek=decorate,ziyafet=feast,geleneksel=traditional,sürpriz=surprise,hediye vermek=give a present",
-"7. Dreams":"rüya=dream,hayal etmek=imagine,gelecek=future,umut=hope,hedef=goal,plan=plan,başarılı=successful,zengin=rich,astronot=astronaut,uzay=space,bilim=science,kariyer=career,cesaret=courage,azim=determination",
-"8. Public Buildings":"belediye=town hall,adliye=courthouse,havaalanı=airport,tren istasyonu=train station,okul=school,üniversite=university,kilise=church,cami=mosque,tiyatro=theater,fabrika=factory,otopark=car park,büro=office,kamu binası=public building",
-"9. Environment":"çevre=environment,iklim=climate,küresel ısınma=global warming,sera gazı=greenhouse gas,ozon tabakası=ozone layer,erozyon=erosion,orman yangını=forest fire,sel=flood,kuraklık=drought,yenilenebilir enerji=renewable energy,güneş enerjisi=solar energy,atık=waste,zararlı=harmful,tehlike=danger",
-"10. Planets":"güneş sistemi=solar system,Merkür=Mercury,Venüs=Venus,Dünya=Earth,Mars=Mars,Jüpiter=Jupiter,Satürn=Saturn,Uranüs=Uranus,Neptün=Neptune,uydu=satellite,yörünge=orbit,galaksi=galaxy,yıldız=star,kuyruklu yıldız=comet,teleskop=telescope"},
+"1. Appearance and Personality":"dış görünüş=appearance,çekici=attractive,güzel=beautiful,sarışın=blonde,sevimli=cute,rahat=easy-going,cömert=generous,yakışıklı=handsome,başörtüsü=headscarf,dürüst=honest,dışa dönük=outgoing,kişilik=personality,tombul=plump,dakik=punctual,bencil=selfish,ince=slim,akıllı=smart,düz=straight,inatçı=stubborn,desteklemek=support",
+"2. Sports":"başarmak=achieve,yenmek=beat,yarışmak=compete,berabere kalmak=draw,ekipman=equipment,diyet yapmak=go on a diet,spor salonu=gym,vurmak=hit,kapalı alanda yapılan=indoor,sakatlanma=injury,kaybetmek=lose,madalya=medal,rakip=opponent,açık havada yapılan=outdoor,sayı yapmak=score,seyirci=spectator,başarı=success,takım=team,antrenman yapmak=train",
+"3. Biographies":"kaza=accident,yalnız=alone,katılmak=attend,ödül=award,ile tanınmak=be known for,başlamak=begin,görme engelli=blind,çok başarılı=brilliant,iş=business,ele geçirmek=capture,devam etmek=carry on,tamamen=completely,bestelemek=compose,besteci=composer,orkestra yönetmek=conduct,fethetmek=conquer,çizgi=dash,işitme engelli=deaf,karar vermek=decide,ölmek=die,nokta=dot,seçmek=elect,kurmak=establish,mükemmel=excellent,savaşmak=fight,kazanmak=gain,nişanlanmak=get engaged,evlenmek=get married,mezun olmak=graduate,büyümek=grow up,kurum=institution,ilgilenen=interested in,icat etmek=invent,icatlar=inventions,askerî=military,taşınmak=move,milliyetçi=nationalist,sahip olmak=own,desen=pattern,sahne almak=perform,yetiştirmek=raise,cumhuriyet=Republic,ün=reputation,devrim=revolution,yönetmek=rule,laik=secular,kaydırmak=slide over,asker=soldier,devlet adamı=statesman,Müttefik Devletler=the Allies,virtüöz=virtuoso",
+"4. Wild Animals":"saldırmak=attack,korkmak=be afraid of,kuşlar=birds,kafes=cage,çöl=desert,devasa=enormous,nesli tükenmiş=extinct,yaşam alanı=habitat,zarar vermek=harm,insan=human,avlamak=hunt,tropikal orman=jungle,memeli=mammal,zehir=poison,av=prey,sürüngen=reptile,hayatta kalmak=survive",
+"5. Television":"görünmek=appear,kanal=channel,reklam=commercial,yönetmen=director,tartışma=discussion,belgesel=documentary,haberler=news,bilgi yarışması=quiz show,gerçeklik programı=reality show,tavsiye etmek=recommend,uzaktan kumanda=remote control,dizi=series,durum komedisi=sitcom,pembe dizi=soap opera,sohbet programı=talk show",
+"6. Celebrations":"ayarlamak=arrange,katılmak=attend,içecek=beverage,süslemek=decorate,şık=fancy,misafir=guest,ev sahibi=host,davetiye=invitation card,davet mesajı=invitation message,davet etmek=invite,düzenlemek=organize,reddetmek=refuse,paketlemek=wrap",
+"7. Dreams":"inanmak=believe,kariyer=career,hayal=dream,mükemmel=excellent,tahmin etmek=guess,hayal etmek=imagine,tahminde bulunmak=make a guess,huzurlu=peaceful,öngörmek=predict,muhtemelen=probably,almak=receive,hile=trick",
+"8. Public Buildings":"lunapark=amusement park,sanat galerisi=art gallery,fırın=bakery,eczane=chemist's,belediye binası=city hall,kafe=coffee shop,büyük mağaza=department store,itfaiye=fire station,oyun/müzik mağazası=game/music store,valilik=governorship,bakkal=grocery,sinema=movie theater,belediye ofisi=municipal office,belediye=municipality,polis merkezi=police station,alışveriş merkezi=shopping mall",
+"9. Environment":"denge=balance,iklim=climate,çevre dostu=eco-friendly,verimli=efficient,küresel ısınma=global warming,sera etkisi=greenhouse effect,artmak=increase,doğa=nature,kirletmek=pollute,kirlilik=pollution,korumak=protect,geri dönüştürmek=recycle,yenilenebilir=renewable,sorumlu=responsible,güneş enerjisi=solar energy,harekete geçmek=take action,sıcaklık=temperature,tehdit etmek=threaten,atık=waste,rüzgâr enerjisi=wind energy",
+"10. Planets":"atmosfer=atmosphere,kanıt=evidence,keşfetmek=explore,galaksi=galaxy,yer çekimi=gravity,gök taşı=meteor,Ay=moon,gözlemlemek=observe,yörünge=orbit,gezegen=planet,kurtarmak=rescue,uydu=satellite,meteor yağmuru=meteor shower,Güneş Sistemi=solar system,uzay mekiği=space shuttle,yüzey=surface,evren=universe"},
 8:{
-"1. Friendship":"dostluk=friendship,en iyi arkadaş=best friend,güvenmek=trust,güvenilir=reliable,sadık=loyal,paylaşmak=share,kavga etmek=quarrel,barışmak=make up,özür dilemek=apologize,affetmek=forgive,yardım etmek=help,anlayışlı=understanding,dürüst=honest,destek=support",
-"2. Teen Life":"ergen=teenager,ergenlik=adolescence,sosyal medya=social media,akran=peer,baskı=pressure,gençlik=youth,bağımsız=independent,harçlık=allowance,moda=fashion,trend=trend,kıyafet=outfit,hayran=fan,kuşak farkı=generation gap,tartışma=argument",
-"3. In the Kitchen":"mutfak=kitchen,tarif=recipe,malzeme=ingredient,doğramak=chop,kaynatmak=boil,kızartmak=fry,pişirmek=bake,karıştırmak=mix,tencere=pot,tava=pan,ocak=stove,bıçak=knife,kaşık=spoon,tuz=salt",
-"4. On the Phone":"telefon=phone,aramak=call,cevap vermek=answer,mesaj=message,hat=line,meşgul=busy,sesli mesaj=voicemail,şarj=charge,pil=battery,cep telefonu=mobile phone,tekrar aramak=call back,konuşmak=speak,mesaj bırakmak=leave a message",
-"5. The Internet":"internet=internet,web sitesi=website,arama motoru=search engine,şifre=password,e-posta=email,indirmek=download,yüklemek=upload,bağlantı=link,tarayıcı=browser,çevrimiçi=online,güvenlik=security,hesap=account,sanal=virtual,bilgi=information",
-"6. Adventures":"keşif=exploration,dağa tırmanmak=climb a mountain,dalış=diving,paraşüt=parachute,tehlikeli=dangerous,mağara=cave,ada=island,hazine=treasure,pusula=compass,yolculuk=journey,kamp ateşi=campfire,kaybolmak=get lost,kurtarmak=rescue",
-"7. Tourism":"turizm=tourism,turist=tourist,rezervasyon=reservation,konaklama=accommodation,uçuş=flight,gümrük=customs,tur=tour,anıt=monument,tarihî=historical,yerel=local,bagaj=luggage,seyahat acentesi=travel agency,oda servisi=room service",
-"8. Chores":"ev işleri=chores,bulaşık yıkamak=wash the dishes,süpürmek=sweep,toz almak=dust,çamaşır yıkamak=do the laundry,ütülemek=iron,yatağı toplamak=make the bed,çöpü çıkarmak=take out the trash,alışveriş yapmak=go shopping,masayı kurmak=set the table,camları silmek=clean the windows,bitkileri sulamak=water the plants",
-"9. Science":"deney=experiment,laboratuvar=laboratory,mikroskop=microscope,atom=atom,madde=matter,hücre=cell,teori=theory,sonuç=result,hipotez=hypothesis,araştırma=research,bilimsel=scientific,formül=formula,kimya=chemistry,fizik=physics,biyoloji=biology",
-"10. Natural Forces":"doğal afet=natural disaster,deprem=earthquake,volkan=volcano,tsunami=tsunami,kasırga=hurricane,hortum=tornado,çığ=avalanche,yıldırım=lightning,gök gürültüsü=thunder,fırtına=storm,toprak kayması=landslide,gelgit=tide,dalga=wave,yangın=fire,hasar=damage,kurtarma ekibi=rescue team"}
+"1. Friendship":"tavsiye=advice,harika=awesome,arka çıkmak=back up,en iyi arkadaş=best friend,ahbap=buddy,meşgul=busy,havalı=cool,uğramak=come over,konser=concert,güvenmek=count on,dostluk=friendship,dolu=full,biriyle iyi geçinmek=get on well with somebody,yürüyüşe çıkmak=go for a walk,rahat=laid-back,sadakat=loyalty,dost=mate,karşılıklı=mutual,sabır=patience,paha biçilmez=priceless,söz vermek=promise,sır=secret,ciddi=serious,paylaşmak=share,desteklemek=support,hayatta kalmak=survive,heyecan verici=thrilling,hazine=treasure,güven=trust,koşulsuz=unconditional",
+"2. Teen Life":"tartışmak=argue,konser=concert,moda=fashion,hoşlanmak=fond of,takılmak=hang out,etkileyici=impressive,yüksek sesli=loud,tercih etmek=prefer,tavsiye etmek=recommend,ilişki=relationship,rahatlatıcı=relaxing,saçma=ridiculous,ciddi=serious,züppe=snob,ergen=teenager,muhteşem=terrific,modaya uygun=trendy,dayanılmaz=unbearable,müzik türleri=types of music",
+"3. In the Kitchen":"fırında pişirmek=bake,kaynatmak=boil,kase=bowl,doğramak=chop,kesmek=cut,lezzetli=delicious,tatlı=dessert,küp küp doğramak=dice,rende=grater,kızartmak=fry,malzeme=ingredient,ezmek=mash,öğün=meal,karıştırmak=mix,yağ=oil,fırın=oven,tava=pan,soymak=peel,dökmek=pour,tarif=recipe,tuzlu=salty,sos tenceresi=saucepan,dilimlemek=slice,ekşi=sour,acılı=spicy,kaşık=spoon,sürmek=spread,leziz=tasty",
+"4. On the Phone":"müsait=available,bağlanmak=connect,iletişime geçmek=contact,numara çevirmek=dial,meşgul=engaged,dahili hat=extension,iletişimde olmak=get/keep in touch,geri dönmek=get back,telefonu kapatmak=hang on / up,beklemek=hold,hat=line,not=memo,telefonu açmak=pick up,kibar=polite,bağlamak=put someone through",
+"5. The Internet":"hesap=account,ek dosya=attachment,gezinmek=browse,tarayıcı=browser,yorum=comment,onaylamak=confirm,bağlantı=connection,silmek=delete,indirmek=download,giriş yapmak=log on / in / off,kayıt olmak=register,cevap vermek=reply,ekran=screen,arama motoru=search engine,kaydolmak=sign in / up,sosyal ağ sitesi=social networking site,yüklemek=upload",
+"6. Adventures":"eğlenceli=amusing,bungee jumping=bungee-jumping,kano=canoeing,mağaracılık=caving,zorlu=challenging,hayal kırıklığı yaratan=disappointing,eğlendirici=entertaining,heyecan verici=exciting,aşırı=extreme,ekstrem sporlar=extreme sports,büyüleyici=fascinating,deltaplan=hang-gliding,kayakla kürek=kayaking,motor yarışı=motor racing,yamaç paraşütü=paragliding,rafting=rafting,kaykay=skateboarding,risk almak=take risks",
+"7. Tourism":"her şey dahil=all-inclusive,antik=ancient,mimari=architecture,cazibe merkezi=attraction,oda kahvaltı=bed and breakfast,kır=countryside,kültür=culture,kültürel=cultural,varış noktası=destination,büyüleyici=fascinating,tarihî yer=historic site,inanılmaz=incredible,tatil köyü=resort,kırsal=rural,meydan=square,kentsel=urban",
+"8. Chores":"zamanında gelmek=arrive on time,temizlemek=clean up,çamaşır yıkamak=do the laundry,ev işi yapmak=doing chores,ütülemek=iron,sessiz kalmak=keep quiet,söz tutmak=keep/break promises,çamaşır=laundry,bulaşık makinesini doldurmak=load/empty the dishwasher,yatağı toplamak=make the bed,kurallara uymak=obey the rules,kitap iade etmek=return books,masayı kurmak=set the table,çöpü çıkarmak=take out the garbage / trash,toparlamak=tidy up,yapılacaklar listesi=to-do list,bulaşık yıkamak=wash / dry the dishes",
+"9. Science":"hücre=cell,tedavi=cure,keşfetmek=discover,deney yapmak=do an experiment,patlamak=explode,incelemek=explore,dahi=genius,ileri teknoloji=high-tech,icat etmek=invent,laboratuvar=lab,süreç=process,sonuç=result,güvenlik=safety,bilimsel=scientific,aramak=search,başarmak=succeed,deney tüpü=test tube,aşılama=vaccination",
+"10. Natural Forces":"çığ=avalanche,afet=disaster,kuraklık=drought,deprem=earthquake,sel=flood,küresel ısınma=global warming,kasırga=hurricane,toprak kayması=landslide,erimek=melt,önlem=precaution,acı çekmek=suffer,hayatta kalan=survivor,hortum=tornado,tsunami=tsunami,volkan=volcano"}
 };
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -273,12 +270,12 @@ const MEM="wc_mem_v2";
 const mem=(()=>{let m={};try{m=JSON.parse(localStorage.getItem(MEM)||"{}")||{}}catch(e){m={}}
  m.hi=m.hi&&typeof m.hi==="object"?m.hi:{};m.sel=m.sel&&typeof m.sel==="object"?m.sel:{};
  m.names=Array.isArray(m.names)?m.names:[];m.board=Array.isArray(m.board)?m.board:[];
- m.npl=[1,2,3,4].includes(m.npl)?m.npl:1;m.custom=m.custom&&typeof m.custom==="object"?m.custom:{};m.hide=m.hide&&typeof m.hide==="object"?m.hide:{};m.sound=m.sound!==false;m.music=m.music!==false;m.grade=+m.grade||0;
+ m.npl=[1,2,3,4].includes(m.npl)?m.npl:1;m.custom=m.custom&&typeof m.custom==="object"?m.custom:{};m.log=Array.isArray(m.log)?m.log:[];m.hide=m.hide&&typeof m.hide==="object"?m.hide:{};m.sound=m.sound!==false;m.music=m.music!==false;m.grade=+m.grade||0;
  if(!m.old){m.old=1;const o=ls.get("wc_hi");if(o)m.hi.g0=o}
  return m})();
 const save=()=>{try{localStorage.setItem(MEM,JSON.stringify(mem))}catch(e){}};
 const gHi=g=>g?(mem.hi["g"+g]||0):Math.max(0,...Object.values(mem.hi));
-let st=null,hi=gHi(0),sound=mem.sound,btns=[],grade=0,sel=new Set(),npl=mem.npl,names=mem.names.slice(),PL=[],pi=0,why="";
+let ultra=false,st=null,hi=gHi(0),sound=mem.sound,btns=[],grade=0,sel=new Set(),npl=mem.npl,names=mem.names.slice(),PL=[],pi=0,why="";
 
 /* ---------- SVG çizimler ---------- */
 const SV={
@@ -331,20 +328,21 @@ function say(t){if(!sound||!window.speechSynthesis)return;try{speechSynthesis.ca
 /* ---------- oyun ---------- */
 const panel=$("#panel");let FW=0;const meas=()=>{FW=$("#field").clientWidth};addEventListener("resize",meas);
 for(let i=0;i<SLOTS;i++){const b=document.createElement("button");b.className="a";b.style.setProperty("--c",COL[i]);b.addEventListener("pointerdown",e=>{e.preventDefault();answer(i)});panel.appendChild(b);btns.push(b)}
-const blank=()=>({hp:3,score:0,combo:0,level:1,kills:0,best:0,enemies:[],slots:Array(SLOTS).fill(null),run:false,left:TURN,locks:new Map(),missed:[]});
+const blank=()=>({hp:ultra?2:3,score:0,combo:0,level:1,kills:0,best:0,enemies:[],slots:Array(SLOTS).fill(null),run:false,left:TURN,locks:new Map(),missed:[]});
 function freeWord(){const used=new Set([...st.slots,...st.enemies.map(e=>e.w.en)]);const p=W.filter(w=>!used.has(w.en)),q=p.length?p:W;return q[Math.random()*q.length|0].en}
 function setSlot(i,en){st.slots[i]=en;st.locks.delete(i);const b=btns[i];b.classList.remove("pop","no","lk");b.textContent=capE(en);void b.offsetWidth;b.classList.add("pop")}
 function lockSlot(i){st.locks.set(i,performance.now()+6000);btns[i].classList.add("lk")}
 function unlockAll(){st.locks.clear();btns.forEach(b=>b.classList.remove("lk"))}
 function hud(){$("#hp").innerHTML=[0,1,2].map(i=>SV.heart(i<st.hp)).join("");$("#sc").textContent=st.score;$("#hi").textContent=Math.max(hi,st.score);$("#lv").textContent=st.level;$("#cb").innerHTML=st.combo>1?`<span class="pill">KOMBO x${Math.min(st.combo,6)}</span><i class="cbar"><b></b></i>`:"";$("#who").textContent=PL[pi]?PL[pi].n:"";tmr()}
 let _ts=-1;function tmr(){const s=Math.ceil(st.left);if(s===_ts)return;_ts=s;$("#tm").textContent=Math.floor(s/60)+":"+String(s%60).padStart(2,"0");$("#tbar i").style.width=st.left/TURN*100+"%"}
-function newGame(){PL=Array.from({length:npl},(_,i)=>({n:(names[i]||"").trim()||(npl>1?"Oyuncu "+(i+1):"Oyuncu"),s:0,kills:0,best:0,missed:[]}));pi=0;startTurn()}
+function newGame(){PL=Array.from({length:npl},(_,i)=>({n:(names[i]||"").trim()||(npl>1?"Oyuncu "+(i+1):"Oyuncu"),s:0,kills:0,best:0,missed:[]}));pi=0;if(ultra)PL[0].n="Ela";intro()}
+function intro(){show(`<div class="bigname">${esc(PL[pi].n)}</div><p>Hazır mısın?</p><button class="go" id="rdy">BAŞLA</button>`);$("#rdy").onclick=()=>{startTurn();if(ultra&&pi===0)banner("ULTRA ZOR MOD")}}
 function startTurn(){
  document.querySelectorAll(".enemy,.bolt,.fl,.bn").forEach(e=>e.remove());
  meas();_ts=-1;st=blank();st.run=true;st.spawnT=.6;st.last=performance.now();unlockAll();
  for(let i=0;i<SLOTS;i++)setSlot(i,freeWord());
  hud();$("#screen").hidden=true;music.start();requestAnimationFrame(loop)}
-const speed=()=>Math.min(.13,.05+.007*st.level),interval=()=>Math.max(1.1,2.6-.15*st.level),maxAct=()=>Math.min(6,3+(st.level>>1));
+const speed=()=>ultra?Math.min(.2,.09+.01*st.level):Math.min(.13,.05+.007*st.level),interval=()=>ultra?Math.max(.7,1.5-.12*st.level):Math.max(1.1,2.6-.15*st.level),maxAct=()=>ultra?6:Math.min(6,3+(st.level>>1));
 function spawn(){
  const lanes=[...Array(LANES).keys()].filter(l=>!st.enemies.some(e=>e.lane===l&&e.x>.72));
  if(!lanes.length)return false;
@@ -371,12 +369,13 @@ function reach(e){
  const c=$("#castle");c.classList.remove("hit");void c.offsetWidth;c.classList.add("hit");
  const f=$("#flash");f.classList.remove("on");void f.offsetWidth;f.classList.add("on");
  hud();if(st.hp<=0)endTurn("Kale düştü!")}
+const pts=w=>{const L=w.en.length;return L<=4?10:L<=7?15:L<=10?20:30};
 function answer(i){
  if(!st||!st.run||st.locks.has(i))return;
  const en=st.slots[i],c=st.enemies.filter(e=>!e.dead&&e.w.en===en);
  if(!c.length){st.combo=0;sfx.no();lockSlot(i);hud();return}
  const e=c.sort((a,b)=>a.x-b.x)[0];e.dead=true;st.combo++;st.cbAt=performance.now();st.best=Math.max(st.best,st.combo);
- const gain=10*Math.min(st.combo,6);st.score+=gain;unlockAll();say(en);sfx.ok();fire(e,gain);hud()}
+ const gain=pts(e.w)*Math.min(st.combo,6)*(ultra?2:1);st.score+=gain;unlockAll();say(en);sfx.ok();fire(e,gain);hud()}
 function fire(e,gain){
  const f=$("#field"),fr=f.getBoundingClientRect(),cr=$("#castle").getBoundingClientRect(),er=e.el.getBoundingClientRect();
  const b=document.createElement("div");b.className="bolt";b.innerHTML=SV.bolt;f.appendChild(b);const h=b.offsetWidth/2;
@@ -389,15 +388,21 @@ function fire(e,gain){
 function banner(t){const b=document.createElement("div");b.className="bn";b.textContent=t;$("#field").appendChild(b);setTimeout(()=>b.remove(),1700)}
 
 /* ---------- tur ve sıralama ---------- */
+/* Tüm cihazların puanını tek yerde toplamak için Firebase Realtime Database adresini buraya yaz.
+   Boş bırakılırsa puanlar sadece o cihazda tutulur. Örnek: "https://proje-adi-default-rtdb.europe-west1.firebasedatabase.app" */
+const FB="";
+const fbu=p=>FB.replace(/\/$/,"")+p+".json";
+function sendRec(r){if(!FB)return;try{fetch(fbu("/scores"),{method:"POST",body:JSON.stringify(r)}).catch(()=>{})}catch(e){}}
+async function allRecs(){if(!FB)return mem.log.concat(mem.board);try{const j=await(await fetch(fbu("/scores"))).json();return j?Object.values(j):[]}catch(e){return mem.log.concat(mem.board)}}
 function show(h){$("#box").innerHTML=h;$("#screen").hidden=false}
 function endTurn(w){
  if(!st.run)return;st.run=false;music.stop();why=w;
  const P=PL[pi];Object.assign(P,{s:st.score,kills:st.kills,best:st.best,missed:st.missed});
  if(st.score>hi){hi=st.score;if(grade)mem.hi["g"+grade]=hi;P.rec=true}
- if(st.score>0){mem.board.push({n:P.n,s:st.score,g:grade,d:Date.now()});const per={};mem.board.sort((a,b)=>b.s-a.s);mem.board=mem.board.filter(r=>(per[r.g]=(per[r.g]||0)+1)<=10)}
+ if(st.score>0){const rec={n:P.n,s:st.score,g:grade,d:Date.now(),k:st.kills};mem.board.push(rec);mem.log.push(rec);if(mem.log.length>2000)mem.log.shift();sendRec(rec);const per={};mem.board.sort((a,b)=>b.s-a.s);mem.board=mem.board.filter(r=>(per[r.g]=(per[r.g]||0)+1)<=10)}
  save();
  const nx=PL[pi+1];
- if(nx){show(`<h1 class="sm">${w}</h1><p>${esc(P.n)}: <b>${P.s}</b> puan</p><p>Sıradaki oyuncu: <b>${esc(nx.n)}</b></p><button class="go" id="nx">Hazırım</button>`);$("#nx").onclick=()=>{pi++;startTurn()}}
+ if(nx){show(`<h1 class="sm">${w}</h1><p>${esc(P.n)}: <b>${P.s}</b> puan</p><p>Sıradaki oyuncu: <b>${esc(nx.n)}</b></p><button class="go" id="nx">Devam</button>`);$("#nx").onclick=()=>{pi++;intro()}}
  else final()}
 function final(){
  const R=[...PL].sort((a,b)=>b.s-a.s),ms=[...new Map(PL.flatMap(p=>p.missed).map(w=>[w.en,w])).values()];
@@ -425,29 +430,47 @@ document.addEventListener("visibilitychange",()=>{if(document.hidden)pause()});
 /* ---------- menüler ---------- */
 function home(){
  hi=gHi(0);st=blank();PL=[];pi=0;hud();
- show(`<h1>Word Castle</h1><p>Sınıfını seç</p>${mem.grade?`<button class="go alt" id="cont">Kaldığın yer: ${mem.grade}. Sınıf</button>`:""}<div class="grs">${[5,6,7,8].map(g=>`<button class="gr" data-g="${g}" style="--c:${COL[g-4]}">${g}. Sınıf</button>`).join("")}</div><div class="cr">Mehmet Tarman Ortaokulu · İngilizce</div>`);
+ show(`<h1>Word Castle</h1><p>Sınıfını seç</p>${mem.grade?`<button class="go alt" id="cont">Kaldığın yer: ${mem.grade}. Sınıf</button>`:""}<div class="grs">${[5,6,7,8].map(g=>`<button class="gr" data-g="${g}" style="--c:${COL[g-4]}">${g}. Sınıf</button>`).join("")}</div><div class="row"><button class="go alt" id="ld">Liderlik Tablosu</button></div><div class="cr">Mehmet Tarman Ortaokulu · İngilizce</div>`);
  document.querySelectorAll(".gr").forEach(b=>b.onclick=()=>units(+b.dataset.g));
- const ct=$("#cont");if(ct)ct.onclick=()=>units(mem.grade)}
+ const ct=$("#cont");if(ct)ct.onclick=()=>units(mem.grade);$("#ld").onclick=()=>board(0)}
 const CK="★ Kendi Listem";
 function cust(g){const L=(mem.custom[g]||"").split("\n").map(x=>x.replace(/,/g," ").trim()).filter(x=>{const a=x.split("=");return a.length===2&&a[0].trim()&&a[1].trim()});if(L.length)D[g][CK]=L.map(x=>x.split("=").map(y=>y.trim()).join("=")).join(",");else delete D[g][CK]}
 function edit(g){show(`<h1 class="sm">${g}. Sınıf Kelimeler</h1><p>Her satıra bir kelime: <b>türkçe=english</b><br>Örnek: elma=apple</p><textarea id="ta" placeholder="elma=apple&#10;kitap=book"></textarea><div class="row"><button class="go alt" id="bk">Geri</button><button class="go" id="sv">Kaydet</button></div>`);$("#ta").value=mem.custom[g]||"";$("#bk").onclick=()=>units(g);$("#sv").onclick=()=>{mem.custom[g]=$("#ta").value;save();cust(g);const n=D[g][CK]?D[g][CK].split(",").length:0;if(n&&n<10){toast("En az 10 kelime gerekli");return}if(n){mem.sel[g]=[CK];save()}units(g)}}
+const HARD="olağanüstü=extraordinary,yaklaşık=approximately,fırsat=opportunity,hayal gücü=imagination,hevesli=enthusiastic,rekabet=competition,deneyim=experience,bilgi birikimi=knowledge,zorluk=challenge,sıcaklık=temperature,sorumluluk=responsibility,başarı=achievement,kararlılık=determination,çevresel=environmental,bağımsızlık=independence,dikkatli=cautious,keşif=discovery,sürdürülebilir=sustainable,gelişmek=develop,ilginç=interesting";
+function buildUltra(){const ks=Object.keys(D[7]).filter(k=>k!==CK),use=grade===7&&sel.size?[...sel].filter(k=>D[7][k]):ks,sE=new Set(),sT=new Set(),all=[];
+ const add=str=>str.split(",").forEach(p=>{const[t,e]=p.split("=");if(!e||sE.has(e)||sT.has(t))return;sE.add(e);sT.add(t);all.push({tr:t,en:e})});
+ const hd=w=>w.en.length>=8||w.en.includes(" ");
+ use.forEach(k=>add(D[7][k]));let h=all.filter(hd);if(h.length<14){add(HARD);h=all.filter(hd)}W=h.length>=14?h:all}
 function pnames(){const el=$("#pn");el.innerHTML=Array.from({length:npl},(_,i)=>`<input maxlength="12" placeholder="${npl>1?"Oyuncu "+(i+1):"Adın"}" value="${esc(names[i]||"")}">`).join("");el.querySelectorAll("input").forEach((x,i)=>x.oninput=()=>{names[i]=x.value;mem.names=names.slice();save()})}
 function units(g){
- grade=g;hi=gHi(g);mem.grade=g;save();cust(g);const ks=Object.keys(D[g]).filter(k=>k===CK||!mem.hide[g]);sel=new Set((mem.sel[g]||[]).filter(k=>ks.includes(k)));
- show(`<h1 class="sm">${g}. Sınıf</h1><p>Ünite seç (birden fazla seçebilirsin)</p><div class="us">${ks.map((k,i)=>`<button class="u${sel.has(k)?" on":""}" data-i="${i}">${k}</button>`).join("")}</div><div class="h3">Kim oynuyor? <span>(sırayla, her oyuncuya 2 dk)</span></div><div class="sg" id="npl">${[1,2,3,4].map(n=>`<button data-n="${n}" class="${n==npl?"on":""}">${n==1?"Tek":n+" kişi"}</button>`).join("")}</div><div id="pn"></div><div class="row"><button class="go alt" id="back">Geri</button><button class="go alt" id="all">Tümünü Seç</button><button class="go alt" id="bd">Skorlar</button><button class="go alt" id="ed">Kelime Ekle</button><button class="go alt" id="hd">${mem.hide[g]?"Hazır Üniteleri Göster":"Hazır Üniteleri Gizle"}</button><button class="go" id="start">BAŞLA</button></div>`);
+ grade=g;hi=gHi(g);mem.grade=g;save();cust(g);const ks=Object.keys(D[g]);sel=new Set((mem.sel[g]||[]).filter(k=>ks.includes(k)));
+ show(`<h1 class="sm">${g}. Sınıf</h1><p>Ünite seç (birden fazla seçebilirsin)</p><div class="us">${ks.map((k,i)=>`<button class="u${sel.has(k)?" on":""}" data-i="${i}">${k}</button>`).join("")}</div><div class="h3">Kim oynuyor? <span>(sırayla, her oyuncuya 2 dk)</span></div><div class="sg" id="npl">${[1,2,3,4].map(n=>`<button data-n="${n}" class="${n==npl?"on":""}">${n==1?"Tek":n+" kişi"}</button>`).join("")}</div><div id="pn"></div><div class="row"><button class="go alt" id="back">Geri</button><button class="go alt" id="all">Tümünü Seç</button><button class="go alt" id="bd">Skorlar</button><button class="go alt" id="ed">Kelime Ekle</button><button class="go" id="start">BAŞLA</button></div>`);
  const bs=[...document.querySelectorAll(".u")];
  bs.forEach(b=>b.onclick=()=>{const k=ks[+b.dataset.i];sel.has(k)?sel.delete(k):sel.add(k);b.classList.toggle("on",sel.has(k));mem.sel[g]=[...sel];save()});
  $("#all").onclick=()=>{const all=sel.size<ks.length;sel=new Set(all?ks:[]);bs.forEach(b=>b.classList.toggle("on",all));mem.sel[g]=[...sel];save()};
- $("#bd").onclick=()=>board(g);$("#ed").onclick=()=>edit(g);$("#hd").onclick=()=>{mem.hide[g]=!mem.hide[g];save();units(g)};
+ $("#bd").onclick=()=>board(g);$("#ed").onclick=()=>edit(g);
  $("#npl").onclick=e=>{const b=e.target.closest("button");if(!b)return;npl=+b.dataset.n;mem.npl=npl;save();[...$("#npl").children].forEach(x=>x.classList.toggle("on",x===b));pnames()};
  pnames();$("#back").onclick=home;
- $("#start").onclick=()=>{if(!sel.size){toast("Önce bir ünite seç");return}build();newGame()}}
-function board(g){
- const rows=mem.board.filter(r=>r.g===g).sort((a,b)=>b.s-a.s).slice(0,10);
+ $("#start").onclick=()=>{if(npl===1&&(names[0]||"").trim().toLowerCase()==="adminusman"){admin();return}if(!sel.size){toast("Önce bir ünite seç");return}ultra=npl===1&&(names[0]||"").trim().toLowerCase()==="ela123pro";if(ultra){buildUltra();newGame();toast("Ela'ya özel ULTRA ZOR MOD!");banner("ULTRA ZOR MOD")}else{build();newGame()}}}
+async function board(g){
+ show('<h1 class="sm">Yükleniyor...</h1>');
+ const all=await allRecs(),best={};
+ all.filter(r=>!g||r.g===g).forEach(r=>{const k=String(r.n).toLowerCase()+"|"+r.g;if(!best[k]||r.s>best[k].s)best[k]=r});
+ const rows=Object.values(best).sort((a,b)=>b.s-a.s).slice(0,300);
  const dt=t=>new Date(t).toLocaleDateString("tr-TR",{day:"numeric",month:"short"});
- show(`<h1 class="sm">${g}. Sınıf Skorları</h1><p>Bu cihazdaki en iyi sonuçlar</p><div class="rank">${rows.length?rows.map((r,i)=>`<div class="rk"><span class="md m${Math.min(i+1,4)}">${i+1}</span><b>${esc(r.n)}</b><em>${dt(r.d)}</em><strong>${r.s}</strong></div>`).join(""):"<p>Henüz skor yok. İlk rekoru sen kır!</p>"}</div><div class="row"><button class="go alt" id="bk">Geri</button>${rows.length?`<button class="go alt" id="clr">Skorları Sil</button>`:""}</div>`);
- $("#bk").onclick=()=>units(g);
- const c=$("#clr");if(c){let ask=false,tm;c.onclick=()=>{if(!ask){ask=true;c.textContent="Emin misin? Sil";tm=setTimeout(()=>{ask=false;c.textContent="Skorları Sil"},3000);return}clearTimeout(tm);mem.board=mem.board.filter(r=>r.g!==g);delete mem.hi["g"+g];save();board(g)}}}
+ show(`<h1 class="sm">${g?g+". Sınıf Skorları":"Genel Liderlik"}</h1><p>${FB?"Tüm cihazlardaki":"Bu cihazdaki"} tüm oyuncular, en iyi puana göre</p><div class="rank">${rows.length?rows.map((r,i)=>`<div class="rk"><span class="md m${Math.min(i+1,4)}">${i+1}</span><b>${esc(r.n)}</b><em>${g?dt(r.d):r.g+". sınıf"}</em><strong>${r.s}</strong></div>`).join(""):"<p>Henüz skor yok. İlk rekoru sen kır!</p>"}</div><div class="row"><button class="go alt" id="bk">Geri</button></div>`);
+ $("#bk").onclick=()=>g?units(g):home()}
+async function admin(g=0){
+ show('<h1 class="sm">Yükleniyor...</h1>');
+ const all=await allRecs(),A=all.filter(r=>!g||r.g===g),P={};
+ A.forEach(r=>{const k=String(r.n).toLowerCase(),p=P[k]||(P[k]={n:r.n,best:0,plays:0,tot:0,g:{},last:0});p.plays++;p.tot+=r.s;p.best=Math.max(p.best,r.s);p.g[r.g]=1;p.last=Math.max(p.last,r.d)});
+ const R=Object.values(P).sort((a,b)=>b.best-a.best);
+ const dt=t=>new Date(t).toLocaleDateString("tr-TR",{day:"numeric",month:"short"});
+ show(`<h1 class="sm">Kontrol Paneli</h1><div class="stats"><div><small>OYUN</small>${A.length}</div><div><small>OYUNCU</small>${R.length}</div></div><div class="sg" id="ag">${[0,5,6,7,8].map(x=>`<button data-g="${x}" class="${x==g?"on":""}">${x?x+". Sınıf":"Tümü"}</button>`).join("")}</div>${FB?"":'<div class="miss">Bu panel sadece bu cihazdaki kayıtları gösterir.</div>'}<div class="rank">${R.length?R.slice(0,300).map((p,i)=>`<div class="rk"><span class="md m${Math.min(i+1,4)}">${i+1}</span><b>${esc(p.n)}</b><em>${p.plays} oyun · ${Object.keys(p.g).join(",")}. sınıf · ort ${Math.round(p.tot/p.plays)} · ${dt(p.last)}</em><strong>${p.best}</strong></div>`).join(""):"<p>Henüz kayıt yok.</p>"}</div><div class="row"><button class="go alt" id="bk">Çıkış</button><button class="go alt" id="csv">CSV indir</button><button class="go alt" id="clr">Hepsini Sil</button></div>`);
+ $("#ag").onclick=e=>{const b=e.target.closest("button");if(b)admin(+b.dataset.g)};
+ $("#bk").onclick=home;
+ $("#csv").onclick=()=>{try{const q=v=>'"'+String(v).replace(/"/g,'""')+'"',t="\ufeffisim,sinif,puan,yok edilen,tarih\n"+A.map(r=>[q(r.n),r.g,r.s,r.k||0,q(new Date(r.d).toLocaleString("tr-TR"))].join(",")).join("\n"),a=document.createElement("a");a.href=URL.createObjectURL(new Blob([t],{type:"text/csv"}));a.download="word-castle-puanlar.csv";document.body.appendChild(a);a.click();a.remove()}catch(e){toast("İndirilemedi")}};
+ const c=$("#clr");let ask=false,tm;c.onclick=()=>{if(!ask){ask=true;c.textContent="Emin misin? Sil";tm=setTimeout(()=>{ask=false;c.textContent="Hepsini Sil"},3000);return}clearTimeout(tm);mem.log=[];mem.board=[];mem.hi={};save();if(FB)try{fetch(fbu("/scores"),{method:"DELETE"}).catch(()=>{})}catch(e){}admin(g)}}
 function build(){
  const sE=new Set(),sT=new Set();W=[];
  sel.forEach(k=>D[grade][k].split(",").forEach(p=>{const[t,e]=p.split("=");if(sE.has(e)||sT.has(t))return;sE.add(e);sT.add(t);W.push({tr:t,en:e})}))}
@@ -461,6 +484,7 @@ function build(){
  $("#intro").addEventListener("click",()=>{if(!ready)return;ready=false;sfx.intro();const n=$("#intro");n.classList.add("out");setTimeout(()=>n.remove(),900)})
 })();
 icons();home();
+if("serviceWorker" in navigator)addEventListener("load",()=>{navigator.serviceWorker.register("sw.js").catch(()=>{})});
 </script>
 </body>
 </html>
