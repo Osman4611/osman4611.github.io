@@ -81,45 +81,45 @@
     im.src=IMG;
   }
 
-  function build(o,inv){
-    var d=o.getImageData(0,0,W,H).data;
-    var step=Math.max(3,Math.round(Math.sqrt(W*H/15000)));
-    parts=[];
+  var N=0,TX,TY,SX,SY,DL,CR,CG,CB,out,o32;
+  function build(o){
+    var d=o.getImageData(0,0,W,H).data,step=2,cap=Math.ceil(W/step)*Math.ceil(H/step);
+    TX=new Float32Array(cap);TY=new Float32Array(cap);SX=new Float32Array(cap);SY=new Float32Array(cap);DL=new Float32Array(cap);
+    CR=new Uint8Array(cap);CG=new Uint8Array(cap);CB=new Uint8Array(cap);N=0;
     for(var y=0;y<H;y+=step){
       for(var x=0;x<W;x+=step){
         var i=(y*W+x)*4,r=d[i],g=d[i+1],b=d[i+2];
-        var lum=r*0.3+g*0.59+b*0.11;
-        if(inv)lum=255-lum;
-        if(lum<35)continue;
-        var red=!inv&&r>g*1.6&&r>b*1.6;
-        var col=red?"rgb("+r+","+g+","+b+")":"rgb("+(lum|0)+","+(lum|0)+","+(lum|0)+")";
-        parts.push({tx:x,ty:y,sx:Math.random()*W,sy:Math.random()*H,
-          dl:(y/H)*1500+Math.random()*1000,sz:Math.max(1,step*(0.35+lum/255*0.65)*0.8),c:col});
+        if(r*0.3+g*0.59+b*0.11<14)continue;
+        TX[N]=x;TY[N]=y;SX[N]=Math.random()*W;SY[N]=Math.random()*H;
+        DL[N]=(y/H)*1500+Math.random()*1000;CR[N]=r;CG[N]=g;CB[N]=b;N++;
       }
     }
+    out=ctx.createImageData(W,H);o32=new Uint32Array(out.data.buffer);
   }
 
   var t0=0,DUR=3200,shown=false;
   function frame(now){
     if(closed)return;
     var t=now-t0,done=true;
-    ctx.fillStyle="#050505";ctx.fillRect(0,0,W,H);
-    for(var i=0;i<parts.length;i++){
-      var p=parts[i],k=(t-p.dl)/DUR;
+    o32.fill(0xFF050505);
+    for(var i=0;i<N;i++){
+      var k=(t-DL[i])/DUR;
       if(k<1)done=false;
       if(k<0)k=0;else if(k>1)k=1;
-      var e=1-Math.pow(1-k,3);
-      ctx.globalAlpha=0.25+0.75*e;ctx.fillStyle=p.c;
-      ctx.fillRect(p.sx+(p.tx-p.sx)*e,p.sy+(p.ty-p.sy)*e,p.sz,p.sz);
+      var u=1-k,e=1-u*u*u,f=0.3+0.7*e;
+      var x=(SX[i]+(TX[i]-SX[i])*e)|0,y=(SY[i]+(TY[i]-SY[i])*e)|0;
+      if(x<0||y<0||x>=W-1||y>=H-1)continue;
+      var c=(0xFF000000|(((CB[i]*f)|0)<<16)|(((CG[i]*f)|0)<<8)|((CR[i]*f)|0))>>>0,p=y*W+x;
+      o32[p]=c;o32[p+1]=c;o32[p+W]=c;o32[p+W+1]=c;
     }
-    ctx.globalAlpha=1;
+    ctx.putImageData(out,0,0);
     if(t>3200&&!shown){shown=true;tx.classList.add("on")}
     if(!done)raf=requestAnimationFrame(frame);
   }
 
   source(function(o,inv){
     if(closed)return;
-    build(o,inv);
+    build(o);
     t0=performance.now();
     raf=requestAnimationFrame(frame);
   });
